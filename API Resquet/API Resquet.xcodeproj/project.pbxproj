@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		B98647522E4D21DA0029B239 /* API Resquet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "API Resquet.app"; path = "/Users/antoniocosta/Desktop/API Request/API_Request/API Resquet/build/Debug-iphoneos/API Resquet.app"; sourceTree = "<absolute>"; };
+		B98647522E4D21DA0029B239 /* API Resquet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "API Resquet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -34,6 +34,14 @@
 			children = (
 				B98647542E4D21DA0029B239 /* API Resquet */,
 			);
+			sourceTree = "<group>";
+		};
+		B98647532E4D21DA0029B239 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B98647522E4D21DA0029B239 /* API Resquet.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,7 +94,7 @@
 			mainGroup = B98647492E4D21DA0029B239;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = B98647492E4D21DA0029B239;
+			productRefGroup = B98647532E4D21DA0029B239 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
