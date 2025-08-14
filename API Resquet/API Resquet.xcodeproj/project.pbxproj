@@ -33,7 +33,6 @@
 			isa = PBXGroup;
 			children = (
 				B98647542E4D21DA0029B239 /* API Resquet */,
-				B98647532E4D21DA0029B239 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
