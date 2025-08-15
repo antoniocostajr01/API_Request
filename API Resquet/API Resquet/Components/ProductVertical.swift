@@ -1,14 +1,10 @@
-//
-//  ProductVertical.swift
-//  API Resquet
-//
-//  Created by sofia leitao on 14/08/25.
-//
+
 import SwiftUI
 
-struct ProductCardVertical: View {
+struct ProductVertical: View {
     let title: String
     let price: String
+    var imageURL: String? = nil           
     @State private var isFavorite = false
 
     var body: some View {
@@ -24,27 +20,40 @@ struct ProductCardVertical: View {
                             FavoriteIcon(isFavorite: isFavorite)
                         }
                         .overlay {
-                            Image(systemName: "bag.fill")
-                                .font(.system(size: 44))
-                                .foregroundStyle(Color(.fillsTertiary))
+                            if let imageURL, let url = URL(string: imageURL) {
+                                AsyncImage(url: url) { phase in
+                                    switch phase {
+                                    case .success(let img):
+                                        img.resizable().scaledToFill()
+                                    case .empty, .failure(_):
+                                        Image(systemName: "bag.fill")
+                                            .font(.system(size: 44))
+                                            .foregroundStyle(Color(.systemGray3))
+                                    @unknown default:
+                                        Image(systemName: "bag.fill")
+                                            .font(.system(size: 44))
+                                            .foregroundStyle(Color(.systemGray3))
+                                    }
+                                }
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            } else {
+                                Image(systemName: "bag.fill")
+                                    .font(.system(size: 44))
+                                    .foregroundStyle(Color(.systemGray3))
+                            }
                         }
+
                     Text(title)
                         .font(.subheadline)
                         .foregroundStyle(.labelsPrimary)
+                        .lineLimit(2)
 
-                    Text(price)
+                    Text(price) // already includes "US$"
                         .font(.headline)
                         .foregroundStyle(.labelsPrimary)
                 }
                 .padding(8)
             )
     }
-}
-
-#Preview {
-    ProductCardVertical(
-        title: "Product name with two or more lines goes here",
-        price: "US$ 00,00"
-    )
 }
 
