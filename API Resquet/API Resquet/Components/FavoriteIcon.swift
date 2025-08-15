@@ -3,26 +3,29 @@
 //  API Resquet
 //
 //  Created by sofia leitao on 13/08/25.
+//
 import SwiftUI
 
 struct FavoriteIcon: View {
-    @State var isFavorite: Bool
+    var isFavorite: Bool
+    var cornerRadius: CGFloat = 8
+    var height: CGFloat = 38
+    var width: CGFloat = 38
+    var size: CGFloat = 20
     
     var body: some View {
-        Button (action: {
-            isFavorite.toggle()
-        }) {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.fillsTertiary)
-                .frame(width: 38, height: 38)
-                .overlay(
-                    Image(systemName: isFavorite ? "heart.fill" : "heart")
-                        .foregroundColor(.labelsPrimary)
-                )
+        Button {
+            // TODO: COLOCAR ISFAVORITE DO SWIFTDATA
+        } label: {
+            Image(systemName: isFavorite ? "heart.fill" : "heart")
+                .imageScale(.medium)
+                .padding(8)
+                .frame(width: width, height: height)
+                .font(.system(size: size))
+                .background(.fillsTertiary, in: RoundedRectangle(cornerRadius: cornerRadius))
         }
+        .buttonStyle(.plain)
     }
+    
 }
 
-#Preview {
-    FavoriteIcon(isFavorite: false)
-}

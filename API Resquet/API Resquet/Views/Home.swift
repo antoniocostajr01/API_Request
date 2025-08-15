@@ -1,13 +1,7 @@
-
 import SwiftUI
 
 struct Home: View {
     @StateObject private var vm = HomeViewModel()
-
-    private let columns: [GridItem] = [
-        GridItem(.flexible(), spacing: 12),
-        GridItem(.flexible(), spacing: 12)
-    ]
 
     var body: some View {
         NavigationStack {
@@ -21,27 +15,22 @@ struct Home: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding()
                 }
-
-                if !vm.deals.isEmpty {
+                
+                if let deal = vm.deals.first {
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Deals of the day")
                             .font(.system(.title2, weight: .semibold))
                             .foregroundStyle(.primary)
 
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            LazyHStack(spacing: 12) {
-                                ForEach(vm.deals) { p in
-                                    ProductHorizontal(
-                                        category: p.category,
-                                        title: p.title,
-                                        price: String(format: "%.2f", p.price),
-                                        imageURL: p.thumbnail
-                                    )
-                                    .frame(width: 361, height: 176)
-                                }
-                            }
-                            .padding(.vertical, 4)
-                        }
+                        ProductHorizontal(
+                            category: deal.category,
+                            title: deal.title,
+                            price: String(format: "%.2f", deal.price),
+                            imageURL: deal.thumbnail,
+                            onTap: { vm.selectedProduct = deal },
+                            isFavorite: false
+                        )
+                        .frame(width: 361, height: 176)
                     }
                     .padding(.horizontal)
                     .padding(.top)
@@ -53,12 +42,14 @@ struct Home: View {
                             .font(.system(.title2, weight: .semibold))
                             .foregroundStyle(.primary)
 
-                        LazyVGrid(columns: columns, spacing: 12) {
+                        LazyVGrid(columns: vm.columns, spacing: 12) {
                             ForEach(vm.topPicks) { p in
                                 ProductVertical(
                                     title: p.title,
                                     price: "US$" + String(format: "%.2f", p.price),
-                                    imageURL: p.thumbnail
+                                    imageURL: p.thumbnail,
+                                    onTap: { vm.selectedProduct = p },
+                                    isFavorite: false
                                 )
                             }
                         }
@@ -71,6 +62,10 @@ struct Home: View {
             .navigationTitle("Home")
         }
         .task { await vm.load() }
+        .sheet(item: $vm.selectedProduct) { product in
+            ProductDetail(product: product)
+                .presentationDragIndicator(.visible)
+        }
     }
 }
 

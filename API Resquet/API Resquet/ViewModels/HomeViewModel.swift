@@ -5,6 +5,7 @@
 //  Created by sofia leitao on 13/08/25.
 //
 import Foundation
+import SwiftUI
 
 @MainActor
 final class HomeViewModel: ObservableObject {
@@ -12,6 +13,13 @@ final class HomeViewModel: ObservableObject {
     @Published var topPicks: [Product] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
+    @Published var selectedProduct: Product? = nil
+//    @Binding var isFavorite: Bool
+    
+    let columns: [GridItem] = [
+        GridItem(.flexible(), spacing: 12),
+        GridItem(.flexible(), spacing: 12)
+    ]
 
     private let service: ProductServicing
 
