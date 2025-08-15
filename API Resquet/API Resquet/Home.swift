@@ -1,42 +1,77 @@
-//
-//  Home.swift
-//  API Resquet
-//
-//  Created by Antonio Costa on 13/08/25.
-//
 
 import SwiftUI
 
 struct Home: View {
+    @StateObject private var vm = HomeViewModel()
+
+    private let columns: [GridItem] = [
+        GridItem(.flexible(), spacing: 12),
+        GridItem(.flexible(), spacing: 12)
+    ]
+
     var body: some View {
-        ScrollView{
-            VStack{
-                Text("Deals of the day")
-                    .font(.system(.title2, weight: .semibold))
-                    .foregroundStyle(.primary)
-                
-                //MARK: COLOCAR OS COMPONENTES CRIADOS PELA SOFIA AQUI
+        NavigationStack {
+            ScrollView {
+                if let error = vm.errorMessage {
+                    Text(error).foregroundStyle(.red).padding(.horizontal)
+                }
 
-            }
-            .padding()
-            .frame(maxWidth: .infinity, alignment: .leading)
-            
-            VStack{
-                Text("Top picks")
-                    .font(.system(.title2, weight: .semibold))
-                    .foregroundStyle(.primary)
-                
-                //MARK: COLOCAR OS COMPONENTES CRIADOS PELA SOFIA AQUI
+                if vm.isLoading {
+                    ProgressView("Loading…")
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding()
+                }
 
+                if !vm.deals.isEmpty {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Deals of the day")
+                            .font(.system(.title2, weight: .semibold))
+                            .foregroundStyle(.primary)
+
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            LazyHStack(spacing: 12) {
+                                ForEach(vm.deals) { p in
+                                    ProductHorizontal(
+                                        category: p.category,
+                                        title: p.title,
+                                        price: String(format: "%.2f", p.price),
+                                        imageURL: p.thumbnail
+                                    )
+                                    .frame(width: 361, height: 176)
+                                }
+                            }
+                            .padding(.vertical, 4)
+                        }
+                    }
+                    .padding(.horizontal)
+                    .padding(.top)
+                }
+
+                if !vm.topPicks.isEmpty {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Top picks")
+                            .font(.system(.title2, weight: .semibold))
+                            .foregroundStyle(.primary)
+
+                        LazyVGrid(columns: columns, spacing: 12) {
+                            ForEach(vm.topPicks) { p in
+                                ProductVertical(
+                                    title: p.title,
+                                    price: "US$" + String(format: "%.2f", p.price),
+                                    imageURL: p.thumbnail
+                                )
+                            }
+                        }
+                    }
+                    .padding(.horizontal)
+                    .padding(.top, 8)
+                    .padding(.bottom)
+                }
             }
-            .padding()
-            .frame(maxWidth: .infinity, alignment: .leading)
-            
-            
-        }.navigationTitle("Home")
+            .navigationTitle("Home")
+        }
+        .task { await vm.load() }
     }
 }
 
-#Preview {
-    TabBar()
-}
+
