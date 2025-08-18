@@ -8,8 +8,47 @@
 import SwiftUI
 
 struct Categories: View {
+    @StateObject var viewModel = CategoyViewModel(service: DummyJSONService())
+
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            HStack{
+                ForEach(viewModel.randomCategories) {category in
+                    VStack{
+                        CategoryIcon()
+                        Text(category.name)
+                            .lineLimit(1)
+                            .font(.subheadline)
+                            .fontWeight(.regular)
+                    }
+                }
+            }
+            .padding()
+            
+            List(viewModel.filteredCategories) { category in
+                NavigationLink {
+                    EmptyView()
+                } label: {
+                    Text(category.name)
+                        .padding(.vertical)
+                }
+
+                
+            }
+            .listStyle(.plain)
+            .listSectionSeparator(.hidden)
+
+
+            
+            
+        }
+        .searchable(text: $viewModel.searchText, prompt: "Search")
+        .navigationTitle("Categories")
+        .task {
+            await viewModel.load()
+        }
+        
     }
 }
 

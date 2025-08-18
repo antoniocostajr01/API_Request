@@ -9,8 +9,7 @@ import SwiftUI
 
 @MainActor
 final class HomeViewModel: ObservableObject {
-    @Published var deals: [Product] = []
-    @Published var topPicks: [Product] = []
+    @Published var products: [Product] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
     @Published var selectedProduct: Product? = nil
@@ -21,9 +20,9 @@ final class HomeViewModel: ObservableObject {
         GridItem(.flexible(), spacing: 12)
     ]
 
-    private let service: ProductServicing
+    private let service: APIServicing
 
-    init(service: ProductServicing = ProductService()) {
+    init(service: APIServicing) {
         self.service = service
     }
 
@@ -31,16 +30,7 @@ final class HomeViewModel: ObservableObject {
         isLoading = true
         defer { isLoading = false }
         do {
-
-            let res = try await service.fetchProducts(limit: 0, skip: 0)
-            let all = res.products
-            
-            deals = Array(
-                all.sorted { ($0.discountPercentage ?? 0) > ($1.discountPercentage ?? 0) }
-                   .prefix(10)
-            )
-    
-            topPicks = all
+            products = try await service.fetchProducts()
         } catch {
             errorMessage = error.localizedDescription
         }
