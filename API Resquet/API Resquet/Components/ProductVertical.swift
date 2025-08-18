@@ -4,56 +4,56 @@ import SwiftUI
 struct ProductVertical: View {
     let title: String
     let price: String
-    var imageURL: String? = nil           
-    @State private var isFavorite = false
-
+    var imageURL: String? = nil
+    var onTap: (() -> Void)? = nil
+    var isFavorite: Bool  
+    
     var body: some View {
         RoundedRectangle(cornerRadius: 16)
-            .fill(Color(.backgroundsSecondary))
+            .fill(.backgroundsSecondary)
             .frame(width: 177, height: 250)
+    
             .overlay(
-                VStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color(.fillsTertiary))
-                        .frame(height: 160)
-                        .overlay(alignment: .topTrailing) {
-                            FavoriteIcon(isFavorite: isFavorite)
-                        }
-                        .overlay {
-                            if let imageURL, let url = URL(string: imageURL) {
-                                AsyncImage(url: url) { phase in
-                                    switch phase {
-                                    case .success(let img):
-                                        img.resizable().scaledToFill()
-                                    case .empty, .failure(_):
-                                        Image(systemName: "bag.fill")
-                                            .font(.system(size: 44))
-                                            .foregroundStyle(Color(.systemGray3))
-                                    @unknown default:
-                                        Image(systemName: "bag.fill")
-                                            .font(.system(size: 44))
-                                            .foregroundStyle(Color(.systemGray3))
-                                    }
+                VStack(alignment: .leading, spacing: 8) {
+                    ZStack(alignment: .topTrailing) {
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(.fillsTertiary)
+                        
+                        if let imageURL, let url = URL(string: imageURL) {
+                            AsyncImage(url: url) { phase in
+                                switch phase {
+                                case .success(let img):
+                                    img.resizable()
+                                default:
+                                    Image(systemName: "bag.fill")
+                                        .font(.system(size: 44))
+                                        .foregroundStyle(.fillsTertiary)
                                 }
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                            } else {
-                                Image(systemName: "bag.fill")
-                                    .font(.system(size: 44))
-                                    .foregroundStyle(Color(.systemGray3))
                             }
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                            .allowsHitTesting(false)
+                        } else {
+                            Image(systemName: "bag.fill")
+                                .font(.system(size: 44))
+                                .foregroundStyle(.fillsTertiary)
                         }
-
+                        
+                        FavoriteIcon(isFavorite: isFavorite)
+                    }
+                    .frame(height: 161)
+                
                     Text(title)
                         .font(.subheadline)
                         .foregroundStyle(.labelsPrimary)
-                        .lineLimit(2)
-
-                    Text(price) // already includes "US$"
+                        .fixedSize(horizontal: false, vertical: true)
+                    
+                    Text(price)
                         .font(.headline)
                         .foregroundStyle(.labelsPrimary)
                 }
                 .padding(8)
             )
+            .onTapGesture { onTap?() }
     }
 }
 

@@ -1,4 +1,3 @@
-
 import SwiftUI
 
 struct Home: View {
@@ -35,13 +34,17 @@ struct Home: View {
                                     category: firstElement.category,
                                     title: firstElement.title,
                                     price: String(format: "%.2f", firstElement.price),
-                                    imageURL: firstElement.thumbnail
+                                    imageURL: firstElement.thumbnail, isFavorite: true
                                 )
                                 .frame(width: 361, height: 176)
+
                             }
+
                         }
                         .padding(.vertical, 4)
                     }
+
+
                 }
                 .padding(.horizontal)
                 .padding(.top)
@@ -58,7 +61,7 @@ struct Home: View {
                                 ProductVertical(
                                     title: p.title,
                                     price: "US$" + String(format: "%.2f", p.price),
-                                    imageURL: p.thumbnail
+                                    imageURL: p.thumbnail, isFavorite: true
                                 )
                             }
                         }
@@ -73,5 +76,4 @@ struct Home: View {
         .task { await vm.load() }
     }
 }
-
 
