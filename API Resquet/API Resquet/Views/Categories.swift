@@ -1,5 +1,5 @@
 //
-//  Categories.swift
+//  Categories.swiftca
 //  API Resquet
 //
 //  Created by Antonio Costa on 13/08/25.
@@ -9,6 +9,8 @@ import SwiftUI
 
 struct Categories: View {
     @StateObject var viewModel = CategoyViewModel(service: DummyJSONService())
+    
+    var categorySelected: Category?
 
     
     var body: some View {
@@ -28,20 +30,14 @@ struct Categories: View {
             
             List(viewModel.filteredCategories) { category in
                 NavigationLink {
-                    EmptyView()
+                    CategoryProducts(category: category)
                 } label: {
                     Text(category.name)
                         .padding(.vertical)
                 }
-
-                
             }
             .listStyle(.plain)
             .listSectionSeparator(.hidden)
-
-
-            
-            
         }
         .searchable(text: $viewModel.searchText, prompt: "Search")
         .navigationTitle("Categories")
