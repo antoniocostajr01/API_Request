@@ -11,6 +11,9 @@ struct CategoryProducts: View {
     
     @StateObject var viewModel: CategoryProductViewModel = CategoryProductViewModel(service: DummyJSONService())
     
+    @State private var selectedProduct: Product? = nil
+
+    
     private let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 12),
         GridItem(.flexible(), spacing: 12)
@@ -28,8 +31,9 @@ struct CategoryProducts: View {
                 ForEach(viewModel.filteredProducts){product in
                     ProductVertical(title: product.title,
                                     price: "US$" + String(format: "%.2f", product.price),
-                                    imageURL: product.thumbnail
-                                   // isFavorite: true
+                                    imageURL: product.thumbnail,
+                                    onTap: { selectedProduct = product }
+
                     )
                 }
             }
@@ -41,9 +45,11 @@ struct CategoryProducts: View {
         .task {
             await viewModel.loadProducts(category: categorySelected)
         }
+        .sheet(item: $selectedProduct) { product in
+            ProductDetail(product: product)
+            .presentationDragIndicator(.visible)
+                
+        }
     }
 }
 
-//#Preview {
-//    CategoryProducts()
-//}
