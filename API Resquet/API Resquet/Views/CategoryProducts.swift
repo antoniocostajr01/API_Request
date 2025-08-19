@@ -28,8 +28,7 @@ struct CategoryProducts: View {
                 ForEach(viewModel.filteredProducts){product in
                     ProductVertical(title: product.title,
                                     price: "US$" + String(format: "%.2f", product.price),
-                                    imageURL: product.thumbnail,
-                                    isFavorite: true
+                                    imageURL: product.thumbnail
                     )
                 }
             }
