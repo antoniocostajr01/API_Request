@@ -9,7 +9,25 @@ import SwiftUI
 
 struct EmptyStateCart: View {
     var body: some View {
-        Text(Image(systemName:"cart.badge.questionmark"))
+        
+        VStack {
+            VStack {
+                Image(systemName: "cart.fill.badge.questionmark")
+                    .resizable()
+                    .frame(width: 65, height: 60)
+                    .foregroundStyle(.graysGray2)
+                    .padding(8)
+                Text("Your cart is empty!")
+                    .foregroundStyle(.labelsPrimary)
+                    .font(.system(.body, weight: .semibold))
+            }
+            
+            Text("Add an item to your cart.")
+                .foregroundStyle(.labelsSecondary)
+                .font(.system(.body, weight: .regular))
+                .padding()
+        }
+        .padding()
     }
 }
 
