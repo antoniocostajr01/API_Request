@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct API_ResquetApp: App {
+    @StateObject private var cart = CartStore()
     var body: some Scene {
         WindowGroup {
             TabBar()
+                .environmentObject(cart)      
         }
     }
 }

@@ -3,6 +3,7 @@ import SwiftUI
 struct Home: View {
     @StateObject private var vm = HomeViewModel(service: DummyJSONService())
     @State private var selectedProduct: Product? = nil
+    @EnvironmentObject var cart: CartStore
 
     private let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 12),
@@ -75,7 +76,13 @@ struct Home: View {
         .sheet(item: $selectedProduct) { product in
             ProductDetail(product: product)
             .presentationDragIndicator(.visible)
-                
+        }
+        
+        .environmentObject(cart)
+        .sheet(item: $selectedProduct) { product in
+            ProductDetail(product: product)
+                .environmentObject(cart) 
+                .presentationDragIndicator(.visible)
         }
     }
 }
