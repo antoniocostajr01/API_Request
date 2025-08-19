@@ -8,6 +8,8 @@ import SwiftUI
 
 struct ProductDetail: View {
     let product: Product
+    
+    @EnvironmentObject var cart: CartStore
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -41,18 +43,17 @@ struct ProductDetail: View {
                             .foregroundStyle(.primary)
                             .padding()
                     }
-                    
                     Button {
+                        cart.add(product)
+                        dismiss()
                     } label: {
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(.fillsTertiary)
-                            .frame(width: 361, height: 54)
-                            .overlay(
-                                Text("Add to cart")
-                            )
+                            .fill(Color(.fillsTertiary))
+                            .frame(height: 54)
+                            .overlay(Text("Add to cart"))
+                            .padding(.horizontal)
                     }
                     .buttonStyle(.plain)
-                    .padding()
                     Spacer()
                 }
                 .padding()

@@ -19,3 +19,5 @@ struct Product: Identifiable, Decodable {
     let brand: String?
     let thumbnail: String?
 }
+
+
