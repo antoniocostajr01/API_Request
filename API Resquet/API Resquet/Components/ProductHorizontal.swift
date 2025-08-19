@@ -1,4 +1,3 @@
-
 import SwiftUI
 
 struct ProductHorizontal: View {
@@ -6,10 +5,9 @@ struct ProductHorizontal: View {
     let title: String
     let price: String
     var imageURL: String? = nil
-    var onTap: (() -> Void)? = nil
-    
-    var isFavorite: Bool
-    
+    let onTap: () -> Void
+    @State private var isFavorite = false
+
     var body: some View {
         RoundedRectangle(cornerRadius: 16)
             .fill(Color(.backgroundsSecondary))
@@ -39,32 +37,37 @@ struct ProductHorizontal: View {
                                     .foregroundStyle(Color(.systemGray3))
                             }
                         }
-                    
+
                     VStack(alignment: .leading, spacing: 8) {
                         Text(category.uppercased())
                             .font(.caption)
                             .foregroundColor(.labelsSecondary)
-                        
+
                         Text(title)
                             .font(.body)
                             .foregroundColor(.labelsPrimary)
                             .lineLimit(2)
-                        
+
                         Text("US$\(price)")
                             .font(.headline).bold()
                             .foregroundColor(.labelsPrimary)
                     }
-                    
+
                     Spacer(minLength: 0)
                 }
-                    .padding(16)
+                .padding(16)
             )
+ 
             .overlay(alignment: .topTrailing) {
-                FavoriteIcon(isFavorite: isFavorite)
-                    .padding(8)
+                FavoriteIcon(isFavorite: isFavorite) {
+                    isFavorite.toggle()      
+                }
+                .padding(8)
             }
             .contentShape(Rectangle())
-            .onTapGesture { onTap?() }
+            .onTapGesture {
+                onTap()
+            }
     }
 }
 

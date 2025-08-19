@@ -12,6 +12,7 @@ struct FavoriteIcon: View {
     var height: CGFloat = 38
     var width: CGFloat = 38
     var size: CGFloat = 20
+    var onTap: () -> Void = {} 
     
     var body: some View {
         Button {
