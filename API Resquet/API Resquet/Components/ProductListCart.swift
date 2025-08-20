@@ -7,7 +7,6 @@
 import SwiftUI
 
 struct ProductListCart: View {
-    let category: String
     let title: String
     let price: String
     
@@ -57,11 +56,3 @@ struct ProductListCart: View {
     
 }
 
-#Preview {
-    ProductListCart(
-        category: "CATEGORY",
-        title: "Product name with two or more lines goes here",
-        price: "US$ 00,00",
-        inCart: false
-    )
-}

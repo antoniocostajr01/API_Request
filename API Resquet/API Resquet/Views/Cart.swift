@@ -7,17 +7,25 @@
 import SwiftUI
 
 struct Cart: View {
+    
     @EnvironmentObject var cart: CartStore
+    @EnvironmentObject var orders: OrdersItem
+    @State private var goToOrders = false
 
     var body: some View {
         VStack(spacing: 12) {
             if cart.items.isEmpty {
-                ContentUnavailableView("Your cart is empty", systemImage: "cart")
-                    .padding(.top, 40)
+                EmptyStateCart()
             } else {
+                let sortedItems = cart.items.values.sorted { $0.id < $1.id }
+                let limitedItems = Array(sortedItems.prefix(9))
+                let limitedSubtotal = limitedItems.reduce(0.0) { acc, item in
+                    acc + (item.product.price * Double(item.quantity))
+                }
+
                 ScrollView {
                     LazyVStack(spacing: 12) {
-                        ForEach(cart.items.values.sorted(by: { $0.id < $1.id })) { item in
+                        ForEach(limitedItems) { item in
                             ProductListCounter(product: item.product)
                                 .environmentObject(cart)
                                 .frame(maxWidth: .infinity)
@@ -28,19 +36,19 @@ struct Cart: View {
                 }
 
                 VStack {
-                HStack {
-                    Text("Total: ")
-                        .foregroundStyle(.labelsPrimary)
-                        .font(.subheadline)
-                    Spacer()
-                    Text("R$ \(cart.subtotal, specifier: "%.2f")")
-                        .font(.headline)
-                }
-                Button {
-                     //ir para orders
-                     //arrumar fonte do botao - do details tb
-                     //arrumar empty state
-                     //limitar para 9
+                    HStack {
+                        Text("Total: ")
+                            .foregroundStyle(.labelsPrimary)
+                            .font(.subheadline)
+                        Spacer()
+                        Text("R$ \(limitedSubtotal, specifier: "%.2f")")
+                            .font(.headline)
+                    }
+
+                    Button {
+                        orders.save(items: limitedItems)
+                        goToOrders = true
+                        cart.clear()
                     } label: {
                         RoundedRectangle(cornerRadius: 16)
                             .fill(Color(.fillsTertiary))
@@ -51,11 +59,12 @@ struct Cart: View {
                     .buttonStyle(.plain)
                 }
                 .padding(.horizontal, 16)
-                    .padding(.top, 12)
-                    .padding(.bottom, 16)
+                .padding(.top, 12)
+                .padding(.bottom, 16)
             }
         }
         .navigationTitle("Cart")
     }
 }
+
 
