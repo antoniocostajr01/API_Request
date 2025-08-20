@@ -39,8 +39,6 @@ struct QuantityStepper: View {
     }
 }
 
-import SwiftUI
-
 struct ProductListCounter: View {
     @EnvironmentObject var cart: CartStore
     let product: Product
@@ -55,9 +53,27 @@ struct ProductListCounter: View {
                         .fill(Color(.fillsTertiary))
                         .frame(width: 74, height: 74)
                         .overlay {
-                            Image(systemName: "bag.fill")
-                                .font(.system(size: 35))
-                                .foregroundStyle(Color(.fillsTertiary))
+                            Group {
+                                if let thumb = product.thumbnail,
+                                   let url = URL(string: thumb) {
+                                    AsyncImage(url: url) { phase in
+                                        switch phase {
+                                        case .success(let img):
+                                            img.resizable().scaledToFill()
+                                        default:
+                                            Image(systemName: "bag.fill")
+                                                .font(.system(size: 35))
+                                                .foregroundStyle(.labelsPrimary)
+                                        }
+                                    }
+                                } else {
+                                    Image(systemName: "bag.fill")
+                                        .font(.system(size: 35))
+                                        .foregroundStyle(.labelsPrimary)
+                                }
+                            }
+                            .frame(width: 74, height: 74)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
                         }
 
                     VStack(alignment: .leading, spacing: 8) {
@@ -78,4 +94,3 @@ struct ProductListCounter: View {
             )
     }
 }
-

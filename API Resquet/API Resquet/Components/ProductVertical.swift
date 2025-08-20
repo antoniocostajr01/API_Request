@@ -45,7 +45,7 @@ struct ProductVertical: View {
                     Text(title)
                         .font(.subheadline)
                         .foregroundStyle(.labelsPrimary)
-                        .lineLimit(2)
+                        .lineLimit(2, reservesSpace: true)
 
                     Text(price)
                         .font(.headline)

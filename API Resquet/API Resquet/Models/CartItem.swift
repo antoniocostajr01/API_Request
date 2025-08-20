@@ -58,6 +58,10 @@ final class CartStore: ObservableObject {
             }
         )
     }
+    func clear(keepingCapacity: Bool = false) {
+        items.removeAll(keepingCapacity: keepingCapacity)
+        
+    }
 }
 
 extension CartStore {

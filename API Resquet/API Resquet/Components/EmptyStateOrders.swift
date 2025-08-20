@@ -1,27 +1,27 @@
 //
-//  EmptyStateCart.swift
+//  EmptyStateOrders.swift
 //  API Resquet
 //
-//  Created by sofia leitao on 19/08/25.
+//  Created by sofia leitao on 20/08/25.
 //
 
 import SwiftUI
 
-struct EmptyStateCart: View {
+struct EmptyStateOrders: View {
     var body: some View {
         VStack {
-            VStack {
-                Image(systemName: "cart.fill.badge.questionmark")
+            VStack{
+                Image(systemName: "bag.badge.questionmark")
                     .resizable()
                     .frame(width: 65, height: 60)
                     .foregroundStyle(.graysGray2)
                     .padding(8)
-                Text("Your cart is empty!")
+                Text("No orders yet!")
                     .foregroundStyle(.labelsPrimary)
                     .font(.system(.body, weight: .semibold))
             }
             
-            Text("Add an item to your cart.")
+            Text("Buy an item and it will show up here.")
                 .foregroundStyle(.labelsSecondary)
                 .font(.system(.body, weight: .regular))
                 .padding()
@@ -31,5 +31,5 @@ struct EmptyStateCart: View {
 }
 
 #Preview {
-    EmptyStateCart()
+    EmptyStateOrders()
 }
