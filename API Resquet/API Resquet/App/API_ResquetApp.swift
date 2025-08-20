@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct API_ResquetApp: App {
@@ -13,5 +14,6 @@ struct API_ResquetApp: App {
         WindowGroup {
             TabBar()
         }
+        .modelContainer(for: FavoriteProduct.self)
     }
 }
