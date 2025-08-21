@@ -9,10 +9,10 @@ import Foundation
 import SwiftData
 
 @Model
-final class FavoriteProduct {
+class FavoriteProduct {
     var id: Int
     
-    init(id: Int, product: Product) {
+    init(id: Int) {
         self.id = id
     }
 }

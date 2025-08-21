@@ -10,10 +10,13 @@ import SwiftData
 
 @main
 struct API_ResquetApp: App {
+    
+//    @StateObject private var favoriteViewModel = FavoriteViewModel(dataSource: .shared)
+    
     var body: some Scene {
         WindowGroup {
             TabBar()
+//                .environmentObject(favoriteViewModel)
         }
-        .modelContainer(for: FavoriteProduct.self)
     }
 }

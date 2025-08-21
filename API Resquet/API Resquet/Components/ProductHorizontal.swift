@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct ProductHorizontal: View {
+    
+    @EnvironmentObject var viewModelFavorites: FavoriteViewModel
+    
     let category: String
     let title: String
     let price: String
@@ -60,7 +63,8 @@ struct ProductHorizontal: View {
  
             .overlay(alignment: .topTrailing) {
                 FavoriteIcon(isFavorite: isFavorite) {
-                    isFavorite.toggle()      
+                    isFavorite.toggle()
+                    
                 }
                 .padding(8)
             }

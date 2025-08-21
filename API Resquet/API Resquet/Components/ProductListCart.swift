@@ -7,9 +7,9 @@
 import SwiftUI
 
 struct ProductListCart: View {
-    let category: String
     let title: String
     let price: String
+    let imageURL: String? 
     
     @State var inCart: Bool
     
@@ -23,19 +23,38 @@ struct ProductListCart: View {
                         .fill(Color(.fillsTertiary))
                         .frame(width: 74, height: 74)
                         .overlay {
-                            Image(systemName: "bag.fill")
-                                .font(.system(size: 35))
-                                .foregroundStyle(Color(.fillsTertiary))
+                            if let imageURL, let url = URL(string: imageURL) {
+                                AsyncImage(url: url) { phase in
+                                    switch phase {
+                                    case .success(let img): img.resizable().scaledToFill().frame(width: 74, height: 74)
+
+                                    default:
+                                        Image(systemName: "bag.fill")
+                                            .font(.system(size: 44))
+                                            .foregroundStyle(Color(.systemGray3))
+                                    }
+                                }
+                                .frame(width: 160, height: 160)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                .allowsHitTesting(false)
+                            } else {
+                                Image(systemName: "bag.fill")
+                                    .font(.system(size: 44))
+                                    .foregroundStyle(Color(.systemGray3))
+                            }
+                            
                         }
                     VStack(alignment: .leading, spacing: 8) {
                         Text(title)
                             .font(.footnote)
                             .foregroundStyle(.labelsPrimary)
-                
+                        
                         Text(price)
                             .font(.headline)
                             .foregroundStyle(.labelsPrimary)
                     }
+                    
+                    Spacer()
                     
                     Button (action: {
                         inCart.toggle()
@@ -47,6 +66,7 @@ struct ProductListCart: View {
                                 Image(systemName: inCart ? "cart.fill" : "cart")
                                     .foregroundColor(.labelsPrimary)
                             )
+                            .padding(.trailing, 8)
                     }
                     
                 }
@@ -57,11 +77,10 @@ struct ProductListCart: View {
     
 }
 
-#Preview {
-    ProductListCart(
-        category: "CATEGORY",
-        title: "Product name with two or more lines goes here",
-        price: "US$ 00,00",
-        inCart: false
-    )
-}
+//#Preview {
+//    ProductListCart(
+//        title: "Product name with two or more lines goes here",
+//        price: "US$ 00,00",
+//        inCart: false
+//    )
+//}

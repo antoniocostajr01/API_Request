@@ -3,7 +3,7 @@ import SwiftUI
 struct Home: View {
     @StateObject private var vm = HomeViewModel(service: DummyJSONService())
     @State private var selectedProduct: Product? = nil
-
+        
     private let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 12),
         GridItem(.flexible(), spacing: 12)
@@ -35,8 +35,14 @@ struct Home: View {
                                     title: first.title,
                                     price: String(format: "%.2f", first.price),
                                     imageURL: first.thumbnail,
-                                    onTap: { selectedProduct = first }
+                                    onTap: {
+                                        vm.toggleIsFavorite(id: first.id)
+                                        print(vm.getFavorites())
+                                    }
                                 )
+                                .onTapGesture {
+                                    selectedProduct = first
+                                }
                                 .frame(width: 361, height: 176)
                             }
                         }
@@ -58,8 +64,14 @@ struct Home: View {
                                     title: p.title,
                                     price: "US$ " + String(format: "%.2f", p.price),
                                     imageURL: p.thumbnail,
-                                    onTap: { selectedProduct = p }
+                                    isFavorite: vm.getFavorites().map { $0.id }.contains(p.id),
+                                    onTap: {
+                                        vm.toggleIsFavorite(id: p.id)
+                                    }
                                 )
+                                .onTapGesture {
+                                    selectedProduct = p
+                                }
                             }
                         }
                     }
