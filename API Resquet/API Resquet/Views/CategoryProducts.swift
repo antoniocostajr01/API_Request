@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoryProducts: View {
-        
+    
     @StateObject var viewModel: CategoryProductViewModel = CategoryProductViewModel(service: DummyJSONService())
     
     @State private var selectedProduct: Product? = nil
@@ -33,6 +33,7 @@ struct CategoryProducts: View {
                                     price: "US$" + String(format: "%.2f", product.price),
                                     imageURL: product.thumbnail,
                                     onTap: { selectedProduct = product }
+
                     )
                 }
             }

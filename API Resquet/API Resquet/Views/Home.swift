@@ -3,7 +3,10 @@ import SwiftUI
 struct Home: View {
     @StateObject private var vm = HomeViewModel(service: DummyJSONService())
     @State private var selectedProduct: Product? = nil
-        
+
+    @EnvironmentObject var cart: CartStore
+
+
     private let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 12),
         GridItem(.flexible(), spacing: 12)
@@ -62,7 +65,7 @@ struct Home: View {
                             ForEach(vm.products) { p in
                                 ProductVertical(
                                     title: p.title,
-                                    price: "US$ " + String(format: "%.2f", p.price),
+                                    price: String(localized: "Currency", defaultValue: "US$") + " " + String(format: "%.2f", p.price),
                                     imageURL: p.thumbnail,
                                     isFavorite: vm.getFavorites().map { $0.id }.contains(p.id),
                                     onTap: {
@@ -87,7 +90,13 @@ struct Home: View {
         .sheet(item: $selectedProduct) { product in
             ProductDetail(product: product)
             .presentationDragIndicator(.visible)
-                
+        }
+        
+        .environmentObject(cart)
+        .sheet(item: $selectedProduct) { product in
+            ProductDetail(product: product)
+                .environmentObject(cart) 
+                .presentationDragIndicator(.visible)
         }
     }
 }

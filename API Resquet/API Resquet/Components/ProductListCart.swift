@@ -77,10 +77,3 @@ struct ProductListCart: View {
     
 }
 
-//#Preview {
-//    ProductListCart(
-//        title: "Product name with two or more lines goes here",
-//        price: "US$ 00,00",
-//        inCart: false
-//    )
-//}
