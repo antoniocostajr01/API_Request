@@ -10,6 +10,7 @@ protocol APIServicing {
     func fetchProducts() async throws -> [Product]
     func fetchCategories() async throws -> [Category]
     func fetchProductsByCategory(forCategory categoryName: String) async throws -> [Product]
+    func fetchProductById(id: Int) async throws -> Product
 }
 
 struct DummyJSONService: APIServicing {
@@ -60,6 +61,22 @@ struct DummyJSONService: APIServicing {
         
         let decoder = JSONDecoder()
         return try decoder.decode(ProductsResponse.self, from: data).products
+    }
+    
+    func fetchProductById(id: Int) async throws -> Product {
+        guard let url = URL(string: "\(baseURL)/products/\(id)") else {
+            throw URLError(.badURL)
+        }
+        
+        let (data, resp) = try await URLSession.shared.data(from: url)
+        
+        guard let http = resp as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
+            throw URLError(.badServerResponse)
+        }
+        
+        let decoder = JSONDecoder()
+        return try decoder.decode(Product.self, from: data)
+
     }
 
 }
