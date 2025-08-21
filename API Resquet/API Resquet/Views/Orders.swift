@@ -23,7 +23,8 @@ struct Orders: View {
     private var eta: String {
         let base = orders.createdAt ?? Date()
         let date = base.addingTimeInterval(60 * 60 * 24 * 7) // +7 days
-        return "Delivery by \(deliveryFormatter.string(from: date)).".uppercased()
+        let text = String(localized: "DELIVERY BY: ")
+        return text+(deliveryFormatter.string(from: date)).uppercased()
     }
 
     private var filteredItems: [CartItem] {
@@ -49,11 +50,12 @@ struct Orders: View {
                             ProductListDelivery(
                                 product: item.product,
                                 deliverText: eta,
-                                priceText: String(
-                                    format: "US$ %.2f",
+                                priceText:
+                                    String(
+                                        format: "\(String(localized: "Currency", defaultValue: "US$")) %.2f",
                                     item.product.price * Double(item.quantity)
                                 )
-                            )
+                        )
                             .frame(maxWidth: .infinity)
                         }
                     }

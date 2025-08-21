@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor
-final class CategoyViewModel: ObservableObject {
+final class CategoryViewModel: ObservableObject {
     @Published var categories: [Category] = []
     @Published var isLoading = false
     @Published var errorMessage: String?

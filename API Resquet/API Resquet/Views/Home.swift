@@ -57,7 +57,7 @@ struct Home: View {
                             ForEach(vm.products) { p in
                                 ProductVertical(
                                     title: p.title,
-                                    price: "US$ " + String(format: "%.2f", p.price),
+                                    price: String(localized: "Currency", defaultValue: "US$") + " " + String(format: "%.2f", p.price),
                                     imageURL: p.thumbnail,
                                     onTap: { selectedProduct = p }
                                 )

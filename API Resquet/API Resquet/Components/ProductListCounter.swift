@@ -81,7 +81,8 @@ struct ProductListCounter: View {
                             .font(.footnote)
                             .foregroundStyle(.labelsPrimary)
 
-                        Text("US$ " + String(format: "%.2f", product.price))
+                        Text(String(localized: "Currency", defaultValue: "US$") + " " + String(format: "%.2f", product.price))
+//                        Text("US$ " + String(format: "%.2f", product.price))
                             .font(.headline)
                             .foregroundStyle(.labelsPrimary)
                     }
