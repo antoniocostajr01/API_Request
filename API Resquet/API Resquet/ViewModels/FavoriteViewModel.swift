@@ -11,13 +11,14 @@ import Foundation
 class FavoriteViewModel: ObservableObject {
     @Published var favorites: [FavoriteProduct] = []
     @Published var products: [Product] = []
+    @Published var isLoading: Bool = false
         
     private let dataSource: SwiftDataFavoriteService
     private let service: APIServicing
     
-    init(dataSource: SwiftDataFavoriteService, servive: APIServicing ) {
+    init(dataSource: SwiftDataFavoriteService, service: APIServicing ) {
         self.dataSource = dataSource
-        self.service = servive
+        self.service = service
         
         // 1 - CRIAR FUNCAO QUE PEGA TODOS OS FAVORITOS
         // 2 - TIPO UM MAP PARA TER TODOS OS IDS EXISTENTES
@@ -37,32 +38,54 @@ class FavoriteViewModel: ObservableObject {
     }
     
     func fetchFavorites() async {
-        for favorite in dataSource.fetchFavoriteProducts() {
-            await getProductFromAPI(id: favorite.id)
+        isLoading = true
+        products.removeAll()
+
+        let favorites = dataSource.fetchFavoriteProducts()
+
+        await withTaskGroup(of: Product?.self) { group in
+            for favorite in favorites {
+                group.addTask {
+                    do {
+                        return try await self.service.fetchProductById(id: favorite.id)
+                    } catch {
+                        print("Erro ao buscar produto \(favorite.id): \(error)")
+                        return nil
+                    }
+                }
+            }
+
+            for await product in group {
+                if let product = product {
+                    await MainActor.run {
+                        self.products.append(product)
+                    }
+                }
+            }
         }
+
+        isLoading = false
     }
     
     func isFavorite(id: Int) -> Bool {
         return favorites.contains { $0.id == id }
     }
     
-//    func toggleFavorite(id: Int) {
-//        if isFavorite(id: id) {
-//            removeFavorite(id: id)
-//        }
-//    }
-//    
-//    func addFavorite(id: Int) {
-//        let favoriteProduct = FavoriteProduct(id: id)
-//        
-//        dataSource.addFavoriteProduct(favoriteProduct)
-//        fetchFavorites()
-//    }
-//    
-//    
-//    private func removeFavorite(id: Int) {
-//        dataSource.deleteFavoriteProduct(id: id)
-//        fetchFavorites()
-//    }
+    func toggleFavorite(id: Int) {
+        if isFavorite(id: id) {
+            removeFavorite(id: id)
+        }
+    }
+    
+    func addFavorite(id: Int) async {
+        let favoriteProduct = FavoriteProduct(id: id)
+        dataSource.addFavoriteProduct(favoriteProduct)
+        await fetchFavorites() // precisa do await
+    }
+
+    private func removeFavorite(id: Int) {
+        dataSource.deleteFavoriteProduct(id: id)
+        Task { await fetchFavorites() } // precisa rodar em Task
+    }
     
 }
