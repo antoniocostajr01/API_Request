@@ -33,8 +33,9 @@ struct ProductDetail: View {
                         .font(.title2).bold()
                         .padding()
 
-                    Text("US$ " + String(format: "%.2f", product.price))
-                        .font(.title3).bold()
+                    Text(String(localized: "Currency", defaultValue: "US$") + " " + String(format: "%.2f", product.price))
+                        .font(.title3)
+                        .bold()
                         .padding()
 
                     if let desc = product.description, !desc.isEmpty {

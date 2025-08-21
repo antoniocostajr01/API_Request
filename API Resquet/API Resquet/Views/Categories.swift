@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Categories: View {
-    @StateObject var viewModel = CategoyViewModel(service: DummyJSONService())
+    @StateObject var viewModel = CategoryViewModel(service: DummyJSONService())
     
     var categorySelected: Category?
 
@@ -32,7 +32,7 @@ struct Categories: View {
                 NavigationLink {
                     CategoryProducts(category: category)
                 } label: {
-                    Text(category.name)
+                    Text(category.localizedCategory?.stringLocalized ?? "")
                         .padding(.vertical)
                 }
             }

@@ -41,7 +41,8 @@ struct Cart: View {
                             .foregroundStyle(.labelsPrimary)
                             .font(.subheadline)
                         Spacer()
-                        Text("R$ \(limitedSubtotal, specifier: "%.2f")")
+                        Text(String(localized: "Currency", defaultValue: "US$") + " " + String(format: "%.2f", limitedSubtotal))
+//                        Text("R$ \(limitedSubtotal, specifier: "%.2f")")
                             .font(.headline)
                     }
 
