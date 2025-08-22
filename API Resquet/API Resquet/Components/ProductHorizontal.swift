@@ -22,8 +22,6 @@ struct ProductHorizontal: View {
 
     let frame: CGRect
     
-    @State private var isFavorite = false
-
     var body: some View {
         RoundedRectangle(cornerRadius: 16)
             .fill(Color(.backgroundsSecondary))

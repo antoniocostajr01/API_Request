@@ -45,20 +45,24 @@ struct Home: View {
 
                         LazyVGrid(columns: iPadDealsColumns, spacing: 16) {
                             ForEach(Array(vm.products.prefix(2))) { product in
-                                ProductHorizontal(
-                                    category: first.category,
-                                    title: first.title,
-                                    price: String(format: "%.2f", first.price),
-                                    imageURL: first.thumbnail,
-                                    isFavorite: vm.getFavorites().map { $0.id }.contains(first.id),
+                                if let first = vm.products.first {
+                                    ProductHorizontal(
+                                        category: first.category,
+                                        title: first.title,
+                                        price: String(format: "%.2f", first.price),
+                                        imageURL: first.thumbnail,
+                                        isFavorite: vm.getFavorites().map { $0.id }.contains(first.id),
                                         onFavoriteTap: {
                                             vm.toggleIsFavorite(id: first.id)
                                         },
-                                    onTap: {
-                                        selectedProduct = first
-                                    }
+                                        onTap: {
+                                            selectedProduct = first
+                                        },
+                                        frame: CGRect(x: 0, y: 0, width: 557, height: 271)
 
-                                )
+                                        
+                                    )
+                                }
                             }
                         }
                     }

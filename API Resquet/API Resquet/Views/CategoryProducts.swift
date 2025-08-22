@@ -39,7 +39,7 @@ struct CategoryProducts: View {
                         onTap: { selectedProduct = product },
                         onFavoriteTap: {
                             viewModel.toggleIsFavorite(id: product.id)
-                        }
+                        }, frame: CGRect(x: 0, y: 0, width: 177, height: 250)
                     )
 
                 }
