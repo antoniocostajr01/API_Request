@@ -27,8 +27,9 @@ struct CategoryProducts: View {
     }
     
     var body: some View {
-        ScrollView{
+        ScrollView {
             LazyVGrid(columns: columns, spacing: 12) {
+
                 ForEach(viewModel.filteredProducts){product in
                     ProductVertical(
                         title: product.title,
@@ -40,6 +41,7 @@ struct CategoryProducts: View {
                             viewModel.toggleIsFavorite(id: product.id)
                         }
                     )
+
                 }
             }
         }

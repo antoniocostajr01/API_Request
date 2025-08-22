@@ -30,6 +30,7 @@ struct Favorites: View {
                 
             } else {
                 ScrollView {
+
                     ForEach(favoriteProductViewModel.products, id: \.id) { product in
                         ProductListCart(
                             title: product.title,
@@ -38,8 +39,10 @@ struct Favorites: View {
                             product:product,
                             inCart: false
                         )
+
                     }
                 }
+
             }
         }
         .task {

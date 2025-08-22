@@ -19,6 +19,7 @@ struct FavoriteIcon: View {
             onTap()
         } label: {
             Image(systemName: isFavorite ? "heart.fill" : "heart")
+                .foregroundStyle(.black)
                 .imageScale(.medium)
                 .padding(8)
                 .frame(width: width, height: height)
