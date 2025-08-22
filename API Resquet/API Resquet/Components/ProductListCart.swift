@@ -9,9 +9,19 @@ import SwiftUI
 struct ProductListCart: View {
     let title: String
     let price: String
-    let imageURL: String? 
+    let imageURL: String?
+    let product: Product
     
     @State var inCart: Bool
+    
+    @EnvironmentObject var cart: CartStore
+    
+    @StateObject var favorite: FavoriteViewModel = FavoriteViewModel(
+        
+        dataSource: .shared,
+        service: DummyJSONService()
+        
+    )
     
     var body: some View {
         RoundedRectangle(cornerRadius: 16)
@@ -56,9 +66,15 @@ struct ProductListCart: View {
                     
                     Spacer()
                     
-                    Button (action: {
+                    Button {
                         inCart.toggle()
-                    }) {
+                        cart.add(product)
+                        favorite.removeFavorite(id: product.id)
+                        
+                        
+                        
+                        
+                    } label: {
                         RoundedRectangle(cornerRadius: 8)
                             .fill(Color.fillsTertiary)
                             .frame(width: 38, height: 38)

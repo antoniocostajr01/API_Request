@@ -9,13 +9,15 @@ import SwiftUI
 
 struct Favorites: View {
     
+    @EnvironmentObject var cart: CartStore
+    
     @StateObject var favoriteProductViewModel: FavoriteViewModel = FavoriteViewModel(
         dataSource: .shared,
         service: DummyJSONService()
     )
     
     var body: some View {
-        Group {
+        VStack {
             if favoriteProductViewModel.isLoading {
                 VStack {
                     Spacer()
@@ -28,11 +30,12 @@ struct Favorites: View {
                 
             } else {
                 ScrollView {
-                    ForEach(favoriteProductViewModel.products) { product in
+                    ForEach(favoriteProductViewModel.products, id: \.id) { product in
                         ProductListCart(
                             title: product.title,
                             price: String(product.price),
-                            imageURL: product.thumbnail,
+                            imageURL: product.thumbnail ?? "",
+                            product:product,
                             inCart: false
                         )
                     }
@@ -44,6 +47,8 @@ struct Favorites: View {
         }
         .padding()
         .navigationTitle("Favorites")
+//        .environmentObject(favoriteProductViewModel)
+//        .environmentObject(cart)
     }
 }
 

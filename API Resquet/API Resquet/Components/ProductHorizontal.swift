@@ -14,9 +14,12 @@ struct ProductHorizontal: View {
     let title: String
     let price: String
     var imageURL: String? = nil
+    let isFavorite: Bool
+    let onFavoriteTap: () -> Void
     let onTap: () -> Void
-    @State private var isFavorite = false
-
+  
+    
+    
     var body: some View {
         RoundedRectangle(cornerRadius: 16)
             .fill(Color(.backgroundsSecondary))
@@ -86,8 +89,9 @@ struct ProductHorizontal: View {
             )
             .overlay(alignment: .topTrailing) {
                 FavoriteIcon(isFavorite: isFavorite) {
-                    isFavorite.toggle()
-
+                    
+                    onFavoriteTap()
+                    
                 }
                 .padding(8)
                 .accessibilityElement()
@@ -96,6 +100,7 @@ struct ProductHorizontal: View {
                 .accessibilityHint(Text(isFavorite ? "Double tap to remove from favorites" : "Double tap to add to favorites"))
                 .accessibilityAddTraits(.isButton)
                 .accessibilitySortPriority(1)
+                
             }
     }
 }

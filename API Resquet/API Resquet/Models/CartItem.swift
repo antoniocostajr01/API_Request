@@ -62,6 +62,11 @@ final class CartStore: ObservableObject {
         items.removeAll(keepingCapacity: keepingCapacity)
         
     }
+    
+    func removeProduct(by id: Int) {
+        items.removeValue(forKey: id)
+    }
+
 }
 
 extension CartStore {

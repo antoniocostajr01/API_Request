@@ -83,7 +83,7 @@ class FavoriteViewModel: ObservableObject {
         await fetchFavorites() // precisa do await
     }
 
-    private func removeFavorite(id: Int) {
+    func removeFavorite(id: Int) {
         dataSource.deleteFavoriteProduct(id: id)
         Task { await fetchFavorites() } // precisa rodar em Task
     }

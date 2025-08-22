@@ -38,9 +38,12 @@ struct Home: View {
                                     title: first.title,
                                     price: String(format: "%.2f", first.price),
                                     imageURL: first.thumbnail,
+                                    isFavorite: vm.getFavorites().map { $0.id }.contains(first.id),
+                                        onFavoriteTap: {
+                                            vm.toggleIsFavorite(id: first.id)
+                                        },
                                     onTap: {
-                                        vm.toggleIsFavorite(id: first.id)
-                                        print(vm.getFavorites())
+                                        selectedProduct = first
                                     }
                                 )
                                 .onTapGesture {
@@ -69,6 +72,9 @@ struct Home: View {
                                     imageURL: p.thumbnail,
                                     isFavorite: vm.getFavorites().map { $0.id }.contains(p.id),
                                     onTap: {
+                                        selectedProduct = p
+                                    },
+                                    onFavoriteTap: {
                                         vm.toggleIsFavorite(id: p.id)
                                     }
                                 )

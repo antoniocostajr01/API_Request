@@ -9,10 +9,11 @@ import SwiftUI
 
 struct CategoryProducts: View {
     
-    @StateObject var viewModel: CategoryProductViewModel = CategoryProductViewModel(service: DummyJSONService())
+    @StateObject var viewModel = CategoryProductViewModel(service: DummyJSONService())
+    
     
     @State private var selectedProduct: Product? = nil
-
+    
     
     private let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 12),
@@ -29,11 +30,15 @@ struct CategoryProducts: View {
         ScrollView{
             LazyVGrid(columns: columns, spacing: 12) {
                 ForEach(viewModel.filteredProducts){product in
-                    ProductVertical(title: product.title,
-                                    price: "US$" + String(format: "%.2f", product.price),
-                                    imageURL: product.thumbnail,
-                                    onTap: { selectedProduct = product }
-
+                    ProductVertical(
+                        title: product.title,
+                        price: "US$" + String(format: "%.2f", product.price),
+                        imageURL: product.thumbnail,
+                        isFavorite: viewModel.getFavorites().map { $0.id }.contains(product.id),
+                        onTap: { selectedProduct = product },
+                        onFavoriteTap: {
+                            viewModel.toggleIsFavorite(id: product.id)
+                        }
                     )
                 }
             }
@@ -47,8 +52,8 @@ struct CategoryProducts: View {
         }
         .sheet(item: $selectedProduct) { product in
             ProductDetail(product: product)
-            .presentationDragIndicator(.visible)
-                
+                .presentationDragIndicator(.visible)
+            
         }
     }
 }
