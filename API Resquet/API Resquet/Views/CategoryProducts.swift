@@ -26,15 +26,21 @@ struct CategoryProducts: View {
     }
     
     var body: some View {
-        ScrollView{
+        ScrollView {
             LazyVGrid(columns: columns, spacing: 12) {
-                ForEach(viewModel.filteredProducts){product in
-                    ProductVertical(title: product.title,
-                                    price: "US$" + String(format: "%.2f", product.price),
-                                    imageURL: product.thumbnail,
-                                    onTap: { selectedProduct = product }
+                ForEach(viewModel.filteredProducts) { product in
+                    Group {
+                        let currency = String(localized: "Currency", defaultValue: "US$")
+                        let amount   = String(format: "%.2f", product.price)
 
-                    )
+                        ProductVertical(
+                            title: product.title,
+                            price: "\(currency) \(amount)",
+                            imageURL: product.thumbnail,
+                            onTap: { selectedProduct = product },
+                            frame: CGRect(x: 0, y: 0, width: 177, height: 250)
+                        )
+                    }
                 }
             }
         }

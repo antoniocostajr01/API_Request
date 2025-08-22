@@ -7,15 +7,26 @@ struct ProductVertical: View {
     var isFavorite = false
     var onTap: () -> Void = {}
 
+    /// 👉 New: external size controller
+    let frame: CGRect
+
+    // Tunables
+    private let cardRadius: CGFloat = 16
+    private let imageRadius: CGFloat = 8
+    private let paddingAll: CGFloat = 8
+
+    // Image area ~64% of card height (adjust if you like)
+    private var imageHeight: CGFloat { frame.height * 0.64 }
+
     var body: some View {
-        RoundedRectangle(cornerRadius: 16)
+        RoundedRectangle(cornerRadius: cardRadius)
             .fill(Color(.backgroundsSecondary))
             .accessibilityHidden(true)
-            .frame(width: 177, height: 250)
+            .frame(width: frame.width, height: frame.height)
             .overlay(
                 VStack(alignment: .leading, spacing: 8) {
                     ZStack(alignment: .topTrailing) {
-                        RoundedRectangle(cornerRadius: 8)
+                        RoundedRectangle(cornerRadius: imageRadius)
                             .fill(Color(.fillsTertiary))
                             .accessibilityHidden(true)
 
@@ -30,7 +41,7 @@ struct ProductVertical: View {
                                         .foregroundStyle(Color(.systemGray3))
                                 }
                             }
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                            .clipShape(RoundedRectangle(cornerRadius: imageRadius))
                             .allowsHitTesting(false)
                             .accessibilityElement()
                             .accessibilityLabel(Text("Product image: \(title)"))
@@ -45,9 +56,6 @@ struct ProductVertical: View {
 
                         FavoriteIcon(isFavorite: isFavorite) {
                             onTap()   // later: persist with SwiftData
-
-//                            isFavorite.toggle()
-
                         }
                         .padding(6)
                         .accessibilityElement()
@@ -57,7 +65,7 @@ struct ProductVertical: View {
                         .accessibilityAddTraits(.isButton)
                         .accessibilitySortPriority(1)
                     }
-                    .frame(height: 160)
+                    .frame(height: imageHeight)
 
                     Text(title)
                         .font(.subheadline)
@@ -68,19 +76,16 @@ struct ProductVertical: View {
                         .font(.headline)
                         .foregroundStyle(.labelsPrimary)
                 }
-                .padding(8)
+                .padding(paddingAll)
                 .contentShape(Rectangle())
                 .onTapGesture { onTap() }
                 .accessibilityElement(children: .combine)
-                .accessibilityLabel(
-                    Text("\(title), price \(price)")
-                )
+                .accessibilityLabel(Text("\(title), price \(price)"))
                 .accessibilityHint(Text("Double tap to see more details"))
                 .accessibilityAddTraits(.isButton)
                 .accessibilitySortPriority(2)
             )
             .contentShape(Rectangle())
-
     }
 }
 

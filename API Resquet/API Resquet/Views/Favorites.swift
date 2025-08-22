@@ -29,14 +29,19 @@ struct Favorites: View {
             } else {
                 ScrollView {
                     ForEach(favoriteProductViewModel.products) { product in
-                        ProductListCart(
-                            title: product.title,
-                            price: String(product.price),
-                            imageURL: product.thumbnail,
-                            inCart: false
-                        )
+                        Group {
+                            let currency = String(localized: "Currency", defaultValue: "US$")
+                            let amount   = String(format: "%.2f", product.price)
+                            ProductListCart(
+                                title: product.title,
+                                price: "\(currency) \(amount)",
+                                imageURL: product.thumbnail,
+                                inCart: false
+                            )
+                        }
                     }
                 }
+
             }
         }
         .task {

@@ -103,8 +103,7 @@
         }
       }
     },
-    "Best Sellers" : {
-      "extractionState" : "stale",
+    "Best sellers" : {
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
@@ -125,7 +124,14 @@
       }
     },
     "Carregando favoritos..." : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carregando favoritos…"
+          }
+        }
+      }
     },
     "Cart" : {
       "localizations" : {
@@ -185,10 +191,6 @@
       }
     },
     "Deals of the day" : {
-
-    },
-    "Deals of the Day" : {
-      "extractionState" : "stale",
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
@@ -304,17 +306,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alimentação"
-          }
-        }
-      }
-    },
-    "Hello, World!" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "hello world"
           }
         }
       }
