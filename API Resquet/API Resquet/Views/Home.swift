@@ -87,10 +87,10 @@ struct Home: View {
         }
         .task { await vm.load() }
 
-        .sheet(item: $selectedProduct) { product in
-            ProductDetail(product: product)
-            .presentationDragIndicator(.visible)
-        }
+//        .sheet(item: $selectedProduct) { product in
+//            ProductDetail(product: product)
+//            .presentationDragIndicator(.visible)
+//        }
         
         .environmentObject(cart)
         .sheet(item: $selectedProduct) { product in

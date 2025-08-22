@@ -23,13 +23,9 @@ struct Favorites: View {
                     Spacer()
                 }
             } else if favoriteProductViewModel.products.isEmpty {
-                VStack {
-                    Spacer()
-                    Text("Você ainda não tem favoritos 😢")
-                        .font(.headline)
-                        .foregroundColor(.gray)
-                    Spacer()
-                }
+                
+                EmptyStateFavorites()
+                
             } else {
                 ScrollView {
                     ForEach(favoriteProductViewModel.products) { product in

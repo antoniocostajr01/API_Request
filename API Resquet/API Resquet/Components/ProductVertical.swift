@@ -46,7 +46,7 @@ struct ProductVertical: View {
                         FavoriteIcon(isFavorite: isFavorite) {
                             onTap()   // later: persist with SwiftData
 
-                            isFavorite.toggle()
+//                            isFavorite.toggle()
 
                         }
                         .padding(6)
@@ -70,7 +70,7 @@ struct ProductVertical: View {
                 }
                 .padding(8)
                 .contentShape(Rectangle())
-                .onTapGesture { onTap?() }
+                .onTapGesture { onTap() }
                 .accessibilityElement(children: .combine)
                 .accessibilityLabel(
                     Text("\(title), price \(price)")

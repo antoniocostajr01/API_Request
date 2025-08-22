@@ -11,6 +11,26 @@
         }
       }
     },
+    "%@, price %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, price %2$@"
+          }
+        }
+      }
+    },
+    "%@, price US$%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, price US$%2$@"
+          }
+        }
+      }
+    },
     "%lld" : {
       "localizations" : {
         "pt-BR" : {
@@ -51,6 +71,9 @@
         }
       }
     },
+    "Add to favorites" : {
+
+    },
     "Beauty" : {
       "localizations" : {
         "pt-BR" : {
@@ -70,6 +93,9 @@
           }
         }
       }
+    },
+    "Carregando favoritos..." : {
+
     },
     "Cart" : {
       "localizations" : {
@@ -100,6 +126,9 @@
           }
         }
       }
+    },
+    "Click to see more details" : {
+
     },
     "Currency" : {
       "extractionState" : "extracted_with_value",
@@ -147,6 +176,18 @@
           }
         }
       }
+    },
+    "Double tap to add to favorites" : {
+
+    },
+    "Double tap to remove from favorites" : {
+
+    },
+    "Double tap to see more details" : {
+
+    },
+    "Favorite" : {
+
     },
     "Favorite an item and it will show up here." : {
       "localizations" : {
@@ -199,6 +240,7 @@
       }
     },
     "Hello, World!" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
@@ -339,6 +381,9 @@
         }
       }
     },
+    "Not favorite" : {
+
+    },
     "Orders" : {
       "localizations" : {
         "pt-BR" : {
@@ -348,6 +393,15 @@
           }
         }
       }
+    },
+    "Placeholder product image" : {
+
+    },
+    "Product image: %@" : {
+
+    },
+    "Remove from favorites" : {
+
     },
     "Search" : {
       "localizations" : {
