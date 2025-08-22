@@ -8,11 +8,43 @@
 import SwiftUI
 
 struct Favorites: View {
+    
+    @StateObject var favoriteProductViewModel: FavoriteViewModel = FavoriteViewModel(
+        dataSource: .shared,
+        service: DummyJSONService()
+    )
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Group {
+            if favoriteProductViewModel.isLoading {
+                VStack {
+                    Spacer()
+                    ProgressView("Carregando favoritos...")
+                    Spacer()
+                }
+            } else if favoriteProductViewModel.products.isEmpty {
+                
+                EmptyStateFavorites()
+                
+            } else {
+                ScrollView {
+                    ForEach(favoriteProductViewModel.products) { product in
+                        ProductListCart(
+                            title: product.title,
+                            price: String(product.price),
+                            imageURL: product.thumbnail,
+                            inCart: false
+                        )
+                    }
+                }
+            }
+        }
+        .task {
+                await favoriteProductViewModel.fetchFavorites()
+        }
+        .padding()
+        .navigationTitle("Favorites")
     }
 }
 
-#Preview {
-    Favorites()
-}
+

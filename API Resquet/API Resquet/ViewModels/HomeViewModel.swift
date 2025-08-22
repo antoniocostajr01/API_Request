@@ -13,7 +13,7 @@ final class HomeViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
     @Published var selectedProduct: Product? = nil
-//    @Binding var isFavorite: Bool
+    @Published var isFavorite: Bool = false
     
     let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 12),
@@ -21,9 +21,11 @@ final class HomeViewModel: ObservableObject {
     ]
 
     private let service: APIServicing
+    private let swiftDataFavoriteService: SwiftDataFavoriteService
 
     init(service: APIServicing) {
         self.service = service
+        self.swiftDataFavoriteService = SwiftDataFavoriteService.shared
     }
 
     func load() async {
@@ -35,4 +37,24 @@ final class HomeViewModel: ObservableObject {
             errorMessage = error.localizedDescription
         }
     }
+    
+    func toggleIsFavorite(id: Int) {
+        var favorites: [FavoriteProduct] = swiftDataFavoriteService.fetchFavoriteProducts()
+        
+        favorites = favorites.filter{ $0.id == id }
+        
+        if favorites.isEmpty {
+            let favoriteProduct = FavoriteProduct(id: id)
+            swiftDataFavoriteService.addFavoriteProduct(favoriteProduct)
+        } else {
+            swiftDataFavoriteService.deleteFavoriteProduct(id: id)
+        }
+        
+        isFavorite.toggle()
+    }
+    
+    func getFavorites() -> [FavoriteProduct] {
+        swiftDataFavoriteService.fetchFavoriteProducts()
+    }
+    
 }

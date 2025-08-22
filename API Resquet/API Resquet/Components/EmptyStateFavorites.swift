@@ -25,6 +25,7 @@ struct EmptyStateFavorites: View {
                 .foregroundStyle(.labelsSecondary)
                 .font(.system(.body, weight: .regular))
                 .padding()
+                .frame(width: 361)
         }
         .padding()
     }

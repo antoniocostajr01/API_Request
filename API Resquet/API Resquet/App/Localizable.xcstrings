@@ -104,6 +104,7 @@
       }
     },
     "Best Sellers" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
@@ -122,6 +123,9 @@
           }
         }
       }
+    },
+    "Carregando favoritos..." : {
+
     },
     "Cart" : {
       "localizations" : {
@@ -180,7 +184,11 @@
         }
       }
     },
+    "Deals of the day" : {
+
+    },
     "Deals of the Day" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
@@ -301,6 +309,7 @@
       }
     },
     "Hello, World!" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {

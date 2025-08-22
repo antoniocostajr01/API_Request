@@ -16,7 +16,7 @@ struct FavoriteIcon: View {
     
     var body: some View {
         Button {
-            // TODO: COLOCAR ISFAVORITE DO SWIFTDATA
+            onTap()
         } label: {
             Image(systemName: isFavorite ? "heart.fill" : "heart")
                 .foregroundStyle(.black)
@@ -27,6 +27,7 @@ struct FavoriteIcon: View {
                 .background(.fillsTertiary, in: RoundedRectangle(cornerRadius: cornerRadius))
         }
         .buttonStyle(.plain)
+        .animation(.spring(), value: isFavorite)
     }
     
 }

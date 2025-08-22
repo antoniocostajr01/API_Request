@@ -4,8 +4,8 @@ struct ProductVertical: View {
     let title: String
     let price: String
     var imageURL: String? = nil
-    var onTap: (() -> Void)? = nil
-    @State private var isFavorite = false
+    var isFavorite = false
+    var onTap: () -> Void = {}
 
     var body: some View {
         RoundedRectangle(cornerRadius: 16)
@@ -44,7 +44,10 @@ struct ProductVertical: View {
                         }
 
                         FavoriteIcon(isFavorite: isFavorite) {
-                            isFavorite.toggle()
+                            onTap()   // later: persist with SwiftData
+
+//                            isFavorite.toggle()
+
                         }
                         .padding(6)
                         .accessibilityElement()
@@ -67,7 +70,7 @@ struct ProductVertical: View {
                 }
                 .padding(8)
                 .contentShape(Rectangle())
-                .onTapGesture { onTap?() }
+                .onTapGesture { onTap() }
                 .accessibilityElement(children: .combine)
                 .accessibilityLabel(
                     Text("\(title), price \(price)")
@@ -76,6 +79,8 @@ struct ProductVertical: View {
                 .accessibilityAddTraits(.isButton)
                 .accessibilitySortPriority(2)
             )
+            .contentShape(Rectangle())
+
     }
 }
 
