@@ -46,55 +46,18 @@ struct Home: View {
                         LazyVGrid(columns: iPadDealsColumns, spacing: 16) {
                             ForEach(Array(vm.products.prefix(2))) { product in
                                 ProductHorizontal(
-                                    category: product.category,
-                                    title: product.title,
-                                    price: String(format: "%.2f", product.price),
-                                    imageURL: product.thumbnail,
+                                    category: first.category,
+                                    title: first.title,
+                                    price: String(format: "%.2f", first.price),
+                                    imageURL: first.thumbnail,
+                                    isFavorite: vm.getFavorites().map { $0.id }.contains(first.id),
+                                        onFavoriteTap: {
+                                            vm.toggleIsFavorite(id: first.id)
+                                        },
                                     onTap: {
-                                        vm.toggleIsFavorite(id: product.id)
-                                        selectedProduct = product
-                                    },
-                                    frame: CGRect(x: 0, y: 0, width: 557, height: 271)
-                                )
-                            }
-                        }
+                                        selectedProduct = first
+                                    }
 
-                        Text("Top picks")
-                            .font(.title2).fontWeight(.semibold)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-
-                        LazyVGrid(columns: iPadFourColumns, spacing: 16) {
-                            ForEach(Array(vm.products.prefix(4))) { p in
-                                ProductVertical(
-                                    title: p.title,
-                                    price: String(localized: "Currency", defaultValue: "US$") + " " + String(format: "%.2f", p.price),
-                                    imageURL: p.thumbnail,
-                                    isFavorite: vm.getFavorites().map { $0.id }.contains(p.id),
-                                    onTap: {
-                                        selectedProduct = p
-                                        vm.toggleIsFavorite(id: p.id)
-                                    },
-                                    frame: CGRect(x: 0, y: 0, width: 213, height: 201)
-                                )
-                            }
-                        }
-
-                        Text("Best sellers")
-                            .font(.title2).fontWeight(.semibold)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-
-                        LazyVGrid(columns: iPadFourColumns, spacing: 16) {
-                            ForEach(Array(vm.products.dropFirst(4))) { p in
-                                ProductVertical(
-                                    title: p.title,
-                                    price: String(localized: "Currency", defaultValue: "US$") + " " + String(format: "%.2f", p.price),
-                                    imageURL: p.thumbnail,
-                                    isFavorite: vm.getFavorites().map { $0.id }.contains(p.id),
-                                    onTap: {
-                                        selectedProduct = p
-                                        vm.toggleIsFavorite(id: p.id)
-                                    },
-                                    frame: CGRect(x: 0, y: 0, width: 213, height: 201)
                                 )
                             }
                         }
@@ -157,6 +120,10 @@ struct Home: View {
                                     isFavorite: vm.getFavorites().map { $0.id }.contains(p.id),
                                     onTap: {
                                         selectedProduct = p
+
+                                    },
+                                    onFavoriteTap: {
+
                                         vm.toggleIsFavorite(id: p.id)
                                     },
                                     frame: CGRect(x: 0, y: 0, width: 181, height: 256)

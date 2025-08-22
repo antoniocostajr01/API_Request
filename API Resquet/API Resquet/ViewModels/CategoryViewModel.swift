@@ -22,9 +22,12 @@ final class CategoryViewModel: ObservableObject {
     }
 
     private let service: APIServicing
+    private let swiftDataFavoriteService: SwiftDataFavoriteService
+
 
     init(service: APIServicing) {
         self.service = service
+        self.swiftDataFavoriteService = SwiftDataFavoriteService.shared
     }
     
     func loadRandomCategories() {
@@ -39,6 +42,10 @@ final class CategoryViewModel: ObservableObject {
         filteredCategories = categories.filter{ category in
             category.name.lowercased().contains(searchText.lowercased())
         }
+    }
+    
+    func getFavorites() -> [FavoriteProduct] {
+        swiftDataFavoriteService.fetchFavoriteProducts()
     }
     
 

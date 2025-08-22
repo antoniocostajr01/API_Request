@@ -13,7 +13,8 @@ final class CategoryProductViewModel: ObservableObject {
     @Published var filteredProducts: [Product] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
-    
+    @Published var isFavorite: Bool = false
+
     @Published var searchText = "" {
         didSet{
             filterProducts()
@@ -21,9 +22,13 @@ final class CategoryProductViewModel: ObservableObject {
     }
     
     private let service: APIServicing
+    private let swiftDataFavoriteService: SwiftDataFavoriteService
+
     
     init(service: APIServicing) {
         self.service = service
+        self.swiftDataFavoriteService = SwiftDataFavoriteService.shared
+
     }
     
     func filterProducts(){
@@ -46,5 +51,24 @@ final class CategoryProductViewModel: ObservableObject {
         } catch {
             errorMessage = error.localizedDescription
         }
+    }
+    
+    func toggleIsFavorite(id: Int) {
+        var favorites: [FavoriteProduct] = swiftDataFavoriteService.fetchFavoriteProducts()
+        
+        favorites = favorites.filter{ $0.id == id }
+        
+        if favorites.isEmpty {
+            let favoriteProduct = FavoriteProduct(id: id)
+            swiftDataFavoriteService.addFavoriteProduct(favoriteProduct)
+        } else {
+            swiftDataFavoriteService.deleteFavoriteProduct(id: id)
+        }
+        
+        isFavorite.toggle()
+    }
+    
+    func getFavorites() -> [FavoriteProduct] {
+        swiftDataFavoriteService.fetchFavoriteProducts()
     }
 }

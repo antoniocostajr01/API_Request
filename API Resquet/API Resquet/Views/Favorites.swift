@@ -9,13 +9,15 @@ import SwiftUI
 
 struct Favorites: View {
     
+    @EnvironmentObject var cart: CartStore
+    
     @StateObject var favoriteProductViewModel: FavoriteViewModel = FavoriteViewModel(
         dataSource: .shared,
         service: DummyJSONService()
     )
     
     var body: some View {
-        Group {
+        VStack {
             if favoriteProductViewModel.isLoading {
                 VStack {
                     Spacer()
@@ -28,17 +30,16 @@ struct Favorites: View {
                 
             } else {
                 ScrollView {
-                    ForEach(favoriteProductViewModel.products) { product in
-                        Group {
-                            let currency = String(localized: "Currency", defaultValue: "US$")
-                            let amount   = String(format: "%.2f", product.price)
-                            ProductListCart(
-                                title: product.title,
-                                price: "\(currency) \(amount)",
-                                imageURL: product.thumbnail,
-                                inCart: false
-                            )
-                        }
+
+                    ForEach(favoriteProductViewModel.products, id: \.id) { product in
+                        ProductListCart(
+                            title: product.title,
+                            price: String(product.price),
+                            imageURL: product.thumbnail ?? "",
+                            product:product,
+                            inCart: false
+                        )
+
                     }
                 }
 
@@ -49,6 +50,8 @@ struct Favorites: View {
         }
         .padding()
         .navigationTitle("Favorites")
+//        .environmentObject(favoriteProductViewModel)
+//        .environmentObject(cart)
     }
 }
 

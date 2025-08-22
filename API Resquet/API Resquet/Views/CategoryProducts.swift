@@ -9,10 +9,11 @@ import SwiftUI
 
 struct CategoryProducts: View {
     
-    @StateObject var viewModel: CategoryProductViewModel = CategoryProductViewModel(service: DummyJSONService())
+    @StateObject var viewModel = CategoryProductViewModel(service: DummyJSONService())
+    
     
     @State private var selectedProduct: Product? = nil
-
+    
     
     private let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 12),
@@ -28,19 +29,19 @@ struct CategoryProducts: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 12) {
-                ForEach(viewModel.filteredProducts) { product in
-                    Group {
-                        let currency = String(localized: "Currency", defaultValue: "US$")
-                        let amount   = String(format: "%.2f", product.price)
 
-                        ProductVertical(
-                            title: product.title,
-                            price: "\(currency) \(amount)",
-                            imageURL: product.thumbnail,
-                            onTap: { selectedProduct = product },
-                            frame: CGRect(x: 0, y: 0, width: 177, height: 250)
-                        )
-                    }
+                ForEach(viewModel.filteredProducts){product in
+                    ProductVertical(
+                        title: product.title,
+                        price: "US$" + String(format: "%.2f", product.price),
+                        imageURL: product.thumbnail,
+                        isFavorite: viewModel.getFavorites().map { $0.id }.contains(product.id),
+                        onTap: { selectedProduct = product },
+                        onFavoriteTap: {
+                            viewModel.toggleIsFavorite(id: product.id)
+                        }
+                    )
+
                 }
             }
         }
@@ -53,8 +54,8 @@ struct CategoryProducts: View {
         }
         .sheet(item: $selectedProduct) { product in
             ProductDetail(product: product)
-            .presentationDragIndicator(.visible)
-                
+                .presentationDragIndicator(.visible)
+            
         }
     }
 }

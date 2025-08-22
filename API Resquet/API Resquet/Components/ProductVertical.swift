@@ -6,6 +6,7 @@ struct ProductVertical: View {
     var imageURL: String? = nil
     var isFavorite = false
     var onTap: () -> Void = {}
+    var onFavoriteTap: () -> Void = {}
 
     /// 👉 New: external size controller
     let frame: CGRect
@@ -55,7 +56,9 @@ struct ProductVertical: View {
                         }
 
                         FavoriteIcon(isFavorite: isFavorite) {
-                            onTap()   // later: persist with SwiftData
+
+                            onFavoriteTap() //Só cuida de favoritar o produto
+
                         }
                         .padding(6)
                         .accessibilityElement()
@@ -78,7 +81,9 @@ struct ProductVertical: View {
                 }
                 .padding(paddingAll)
                 .contentShape(Rectangle())
-                .onTapGesture { onTap() }
+                .onTapGesture {
+                    onTap() // Só cuida de mostrar os detalhes do produto
+                }
                 .accessibilityElement(children: .combine)
                 .accessibilityLabel(Text("\(title), price \(price)"))
                 .accessibilityHint(Text("Double tap to see more details"))
