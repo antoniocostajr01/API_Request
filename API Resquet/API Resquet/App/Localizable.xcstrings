@@ -18,6 +18,12 @@
             "state" : "new",
             "value" : "%1$@, price %2$@"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "preço"
+          }
         }
       }
     },
@@ -27,6 +33,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "%1$@, price US$%2$@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "preço R$"
           }
         }
       }
@@ -72,7 +84,14 @@
       }
     },
     "Add to favorites" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicione aos favoritos"
+          }
+        }
+      }
     },
     "Beauty" : {
       "localizations" : {
@@ -80,6 +99,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Beleza"
+          }
+        }
+      }
+    },
+    "Best sellers" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mais vendidos"
           }
         }
       }
@@ -95,7 +124,14 @@
       }
     },
     "Carregando favoritos..." : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carregando favoritos…"
+          }
+        }
+      }
     },
     "Cart" : {
       "localizations" : {
@@ -128,7 +164,14 @@
       }
     },
     "Click to see more details" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clique para mais detalhes"
+          }
+        }
+      }
     },
     "Currency" : {
       "extractionState" : "extracted_with_value",
@@ -178,16 +221,44 @@
       }
     },
     "Double tap to add to favorites" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clique duas vezes para adicionar aos favoritos"
+          }
+        }
+      }
     },
     "Double tap to remove from favorites" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clique duas vezes para remover dos favoritos"
+          }
+        }
+      }
     },
     "Double tap to see more details" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clique duas vezes para mais detalhes"
+          }
+        }
+      }
     },
     "Favorite" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favoritos"
+          }
+        }
+      }
     },
     "Favorite an item and it will show up here." : {
       "localizations" : {
@@ -235,17 +306,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alimentação"
-          }
-        }
-      }
-    },
-    "Hello, World!" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "hello world"
           }
         }
       }
@@ -382,7 +442,14 @@
       }
     },
     "Not favorite" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não-favorito"
+          }
+        }
+      }
     },
     "Orders" : {
       "localizations" : {
@@ -395,13 +462,34 @@
       }
     },
     "Placeholder product image" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imagem base do produto"
+          }
+        }
+      }
     },
     "Product image: %@" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imagem do produto: "
+          }
+        }
+      }
     },
     "Remove from favorites" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remover dos favoritos"
+          }
+        }
+      }
     },
     "Search" : {
       "localizations" : {

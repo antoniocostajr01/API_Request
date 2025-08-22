@@ -6,6 +6,8 @@
 //
 import SwiftUI
 
+import SwiftUI
+
 struct ProductHorizontal: View {
     
     @EnvironmentObject var viewModelFavorites: FavoriteViewModel
@@ -15,19 +17,25 @@ struct ProductHorizontal: View {
     let price: String
     var imageURL: String? = nil
     let onTap: () -> Void
+    
+    /// 👉 New parameter: lets the caller decide the card size
+    let frame: CGRect
+    
     @State private var isFavorite = false
 
     var body: some View {
         RoundedRectangle(cornerRadius: 16)
             .fill(Color(.backgroundsSecondary))
             .accessibilityHidden(true)
-            .frame(width: 361, height: 176)
+            .frame(width: frame.width, height: frame.height) // 👈 use param
             .overlay(
                 HStack(spacing: 16) {
                     RoundedRectangle(cornerRadius: 8)
                         .fill(Color(.fillsTertiary))
                         .accessibilityHidden(true)
-                        .frame(width: 160, height: 160)
+                        // image takes the min of width/height to stay square
+                        .frame(width: min(frame.height - 16, frame.width * 0.45),
+                               height: min(frame.height - 16, frame.width * 0.45))
                         .overlay {
                             if let imageURL, let url = URL(string: imageURL) {
                                 AsyncImage(url: url) { phase in
@@ -40,7 +48,6 @@ struct ProductHorizontal: View {
                                             .foregroundStyle(Color(.systemGray3))
                                     }
                                 }
-                                .frame(width: 160, height: 160)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                                 .allowsHitTesting(false)
                                 .accessibilityElement()
@@ -81,13 +88,12 @@ struct ProductHorizontal: View {
                 )
                 .accessibilityHint(Text("Click to see more details"))
                 .accessibilityAddTraits(.isButton)
-                .accessibilityAction(.magicTap, onTap) //dois toques entra no details
-                .accessibilitySortPriority(2) //card antes do botao de favorito
+                .accessibilityAction(.magicTap, onTap)
+                .accessibilitySortPriority(2)
             )
             .overlay(alignment: .topTrailing) {
                 FavoriteIcon(isFavorite: isFavorite) {
                     isFavorite.toggle()
-
                 }
                 .padding(8)
                 .accessibilityElement()
