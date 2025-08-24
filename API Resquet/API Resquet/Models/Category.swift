@@ -97,4 +97,34 @@ enum LocalizedCategory: String, CaseIterable {
             return String(localized: "Womens watches")
         }
     }
+    
+    
+    var symbolName: String {
+        switch self {
+        case .beauty:             return "sparkles"
+        case .fragrances:         return "drop"
+        case .furniture:          return "chair.lounge.fill"
+        case .groceries:          return "basket.fill"
+        case .homeDecoration:     return "lamp.table.fill"
+        case .kitchenAccesories: return "fork.knife"
+        case .laptops:            return "laptopcomputer"
+        case .mensShirts,
+                .tops:               return "tshirt.fill"
+        case .mensShoes,
+                .womensShoes:        return "shoe.fill"
+        case .mensWatches,
+                .womensWatches:      return "applewatch.watchface"
+        case .mobileAccessories:  return "powercord.fill"
+        case .motorcycle:         return "motorcycle.fill"
+        case .skinCare:           return "face.smiling.inverse"
+        case .smartphones:        return "iphone"
+        case .sportsAccessories:  return "tennis.racket"
+        case .sunglasses:         return "sunglasses.fill"
+        case .tablets:            return "ipad"
+        case .vehicle:            return "car.fill"
+        case .womensBags:         return "handbag.fill"
+        case .womensDresses:      return "figure.stand.dress"
+        case .womensJewellery:    return "diamond.fill"
+        }
+       }
 }
