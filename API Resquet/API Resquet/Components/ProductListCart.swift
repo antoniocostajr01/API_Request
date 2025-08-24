@@ -14,7 +14,7 @@ struct ProductListCart: View {
     
     @State var inCart: Bool
     
-    @EnvironmentObject var cart: CartStore
+    @EnvironmentObject var cart: CartViewModel
     
     @StateObject var favorite: FavoriteViewModel = FavoriteViewModel(
         

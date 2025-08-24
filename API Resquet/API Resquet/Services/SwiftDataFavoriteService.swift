@@ -20,6 +20,8 @@ class SwiftDataFavoriteService{
     private init() {
         self.modelContainer = try! ModelContainer(for: FavoriteProduct.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
         self.modelContext = modelContainer.mainContext
+
+
     }
     
     func fetchFavoriteProducts() -> [FavoriteProduct] {

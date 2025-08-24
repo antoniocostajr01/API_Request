@@ -40,7 +40,7 @@ struct QuantityStepper: View {
 }
 
 struct ProductListCounter: View {
-    @EnvironmentObject var cart: CartStore
+    @EnvironmentObject var cart: CartViewModel
     let product: Product
 
     var body: some View {

@@ -19,13 +19,6 @@ class FavoriteViewModel: ObservableObject {
     init(dataSource: SwiftDataFavoriteService, service: APIServicing ) {
         self.dataSource = dataSource
         self.service = service
-        
-        // 1 - CRIAR FUNCAO QUE PEGA TODOS OS FAVORITOS
-        // 2 - TIPO UM MAP PARA TER TODOS OS IDS EXISTENTES
-        // 3 - PARA CADA ID, FAZER UM FETCH DA API BUSCANDO POR AQUELE PRODUTO PELO ID
-        // 4 - ARMAZENAR ISSO EM UMA PUBLISHED
-        // 5 - CONSUMIR A LISTA DE PRODUT
-       
     }
     
     func getProductFromAPI(id: Int) async {
@@ -38,6 +31,7 @@ class FavoriteViewModel: ObservableObject {
     }
     
     func fetchFavorites() async {
+        print("FavoriteService shared instance: \(SwiftDataFavoriteService.shared)")
         isLoading = true
         products.removeAll()
 
