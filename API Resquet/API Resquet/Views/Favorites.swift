@@ -50,8 +50,8 @@ struct Favorites: View {
         }
         .padding()
         .navigationTitle("Favorites")
-//        .environmentObject(favoriteProductViewModel)
-//        .environmentObject(cart)
+        .environmentObject(favoriteProductViewModel)
+        .environmentObject(cart)
     }
 }
 
