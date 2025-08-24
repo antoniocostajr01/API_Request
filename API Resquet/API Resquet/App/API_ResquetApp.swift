@@ -11,7 +11,7 @@ import SwiftData
 @main
 struct API_ResquetApp: App {
 
-    @StateObject private var cart = CartStore()
+    @StateObject private var cart = CartStore(dataSource: SwiftDataService.shared)
     @StateObject private var order = OrdersItem()
     var body: some Scene {
         WindowGroup {

@@ -5,62 +5,86 @@
 //  Created by sofia leitao on 19/08/25.
 //
 import SwiftUI
+import SwiftData
 
-struct CartItem: Identifiable {
-    let id: Int
-    let product: Product
+
+@Model
+class CartItem: Identifiable {
+    var id: Int
+//    let product: Product
     var quantity: Int
-    init(product: Product, quantity: Int) {
-        self.id = product.id
-        self.product = product
+    
+    init(id: Int ,quantity: Int) {
+        self.id = id
         self.quantity = quantity
     }
 }
 
-final class CartStore: ObservableObject {
+class CartStore: ObservableObject {
     @Published private(set) var items: [Int: CartItem] = [:]
     
-    func add(_ product: Product, step: Int = 1) {
-        if let existing = items[product.id] {
-            var updated = existing
-            updated.quantity += step
-            items[product.id] = updated
+    private let dataSource: SwiftDataService
+    
+    init(dataSource: SwiftDataService) {
+        self.dataSource = dataSource
+        
+        let persisted = dataSource.fetchCart()
+        
+        self.items = Dictionary(uniqueKeysWithValues: persisted.map { ($0.id, $0) })
+    }
+    
+    func add(productId: Int, step: Int = 1) {
+        if let existing = items[productId] {
+            existing.quantity += step
+            items[productId] = existing
+            dataSource.updateCartQuantity(product: existing, newQuantity: existing.quantity) // ⬅️ persistência
         } else {
-            items[product.id] = CartItem(product: product, quantity: step)
+            let newItem = CartItem(id: productId, quantity: step)
+            items[productId] = newItem
+            dataSource.addProductToCart(product: newItem) // ⬅️ persistência
         }
     }
     
     func increment(_ productId: Int) {
-        guard var item = items[productId] else { return }
+        guard let item = items[productId] else { return }
         item.quantity += 1
         items[productId] = item
+        dataSource.updateCartQuantity(product: item, newQuantity: item.quantity)
     }
     
     func decrement(_ productId: Int) {
-        guard var item = items[productId] else { return }
-        item.quantity = max(0, item.quantity - 1)
-        if item.quantity == 0 { items.removeValue(forKey: productId) }
-        else { items[productId] = item }
+        guard let item = items[productId] else { return }
+        item.quantity -= 1
+        if item.quantity <= 0 {
+            items.removeValue(forKey: productId)
+            dataSource.deleteProductFromCart(product: item)
+        } else {
+            items[productId] = item
+            dataSource.updateCartQuantity(product: item, newQuantity: item.quantity)
+        }
     }
     
-    func binding(for product: Product) -> Binding<Int> {
+    func binding(for productId: Int) -> Binding<Int> {
         Binding(
-            get: { self.items[product.id]?.quantity ?? 0 },
+            get: { self.items[productId]?.quantity ?? 0 },
             set: { newValue in
                 if newValue <= 0 {
-                    self.items.removeValue(forKey: product.id)
-                } else if var existing = self.items[product.id] {
+                    self.items.removeValue(forKey: productId)
+                } else if let existing = self.items[productId] {
                     existing.quantity = newValue
-                    self.items[product.id] = existing
+                    self.items[productId] = existing
                 } else {
-                    self.items[product.id] = CartItem(product: product, quantity: newValue)
+                    self.items[productId] = CartItem(id: productId, quantity: newValue)
                 }
             }
         )
     }
+    
     func clear(keepingCapacity: Bool = false) {
+        for item in items.values {
+            dataSource.deleteProductFromCart(product: item)
+        }
         items.removeAll(keepingCapacity: keepingCapacity)
-        
     }
     
     func removeProduct(by id: Int) {
@@ -73,8 +97,14 @@ extension CartStore {
     var totalItems: Int {
         items.values.reduce(0) { $0 + $1.quantity }
     }
-    var subtotal: Double {
-        items.values.reduce(0) { $0 + (Double($1.quantity) * $1.product.price) }
+    
+    func subtotal(using products: [Int: Product]) -> Double {
+        items.values.reduce(0) { total, item in
+            if let product = products[item.id] {
+                return total + (Double(item.quantity) * product.price)
+            }
+            return total
+        }
     }
 }
 

@@ -8,19 +8,53 @@
 import Foundation
 import SwiftData
 
-class SwiftDataFavoriteService{
+class SwiftDataService{
     
     private let modelContainer: ModelContainer
     private let modelContext: ModelContext
     
     @MainActor
-    static let shared = SwiftDataFavoriteService()
+    static let shared = SwiftDataService()
     
     @MainActor
     private init() {
-        self.modelContainer = try! ModelContainer(for: FavoriteProduct.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
+        self.modelContainer = try! ModelContainer(for: FavoriteProduct.self, CartItem.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
         self.modelContext = modelContainer.mainContext
     }
+    
+    func fetchCart() -> [CartItem] {
+        do {
+            return try modelContext.fetch(FetchDescriptor<CartItem>())
+        } catch {
+            print(error.localizedDescription)
+            return []
+        }
+    }
+    
+    func addProductToCart(product: CartItem) {
+        modelContext.insert(product)
+        do {
+            try modelContext.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func deleteProductFromCart(product: CartItem) {
+        modelContext.delete(product)
+        do {
+            try modelContext.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func updateCartQuantity(product: CartItem, newQuantity: Int) {
+        product.quantity = newQuantity
+        try? modelContext.save()
+    }
+    
+    
     
     func fetchFavoriteProducts() -> [FavoriteProduct] {
         do {

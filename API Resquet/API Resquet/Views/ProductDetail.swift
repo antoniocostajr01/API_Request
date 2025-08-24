@@ -45,7 +45,7 @@ struct ProductDetail: View {
                             .padding()
                     }
                     Button {
-                        cart.add(product)
+                        cart.add(productId: product.id)
                         dismiss()
                     } label: {
                         RoundedRectangle(cornerRadius: 16)

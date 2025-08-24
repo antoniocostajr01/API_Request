@@ -20,7 +20,7 @@ struct Cart: View {
                 let sortedItems = cart.items.values.sorted { $0.id < $1.id }
                 let limitedItems = Array(sortedItems.prefix(9))
                 let limitedSubtotal = limitedItems.reduce(0.0) { acc, item in
-                    acc + (item.product.price * Double(item.quantity))
+                    acc + (Double(cart.totalItems) * Double(item.quantity))
                 }
 
                 ScrollView {

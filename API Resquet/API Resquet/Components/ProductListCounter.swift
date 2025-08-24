@@ -89,7 +89,7 @@ struct ProductListCounter: View {
 
                     Spacer(minLength: 0)
 
-                    QuantityStepper(value: cart.binding(for: product))
+                    QuantityStepper(value: cart.binding(for: product.id))
                 }
                 .padding(16)
             )

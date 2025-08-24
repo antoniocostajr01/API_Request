@@ -17,79 +17,75 @@ struct ProductListCart: View {
     @EnvironmentObject var cart: CartStore
     
     @StateObject var favorite: FavoriteViewModel = FavoriteViewModel(
-        
         dataSource: .shared,
         service: DummyJSONService()
-        
     )
     
     var body: some View {
-        RoundedRectangle(cornerRadius: 16)
-            .fill(Color(.backgroundsSecondary))
-            .frame(width: 361, height: 94)
-            .overlay(
-                HStack(spacing: 16) {
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color(.fillsTertiary))
-                        .frame(width: 74, height: 74)
-                        .overlay {
-                            if let imageURL, let url = URL(string: imageURL) {
-                                AsyncImage(url: url) { phase in
-                                    switch phase {
-                                    case .success(let img): img.resizable().scaledToFill().frame(width: 74, height: 74)
-
-                                    default:
-                                        Image(systemName: "bag.fill")
-                                            .font(.system(size: 44))
-                                            .foregroundStyle(Color(.systemGray3))
-                                    }
-                                }
-                                .frame(width: 160, height: 160)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                                .allowsHitTesting(false)
-                            } else {
+        HStack(spacing: 16) {
+            
+            // Imagem do produto
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color(.fillsTertiary))
+                .frame(width: 74, height: 74)
+                .overlay {
+                    if let imageURL, let url = URL(string: imageURL) {
+                        AsyncImage(url: url) { phase in
+                            switch phase {
+                            case .success(let img):
+                                img
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 74, height: 74)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                            default:
                                 Image(systemName: "bag.fill")
                                     .font(.system(size: 44))
                                     .foregroundStyle(Color(.systemGray3))
                             }
-                            
                         }
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(title)
-                            .font(.footnote)
-                            .foregroundStyle(.labelsPrimary)
-                        
-                        Text(price)
-                            .font(.headline)
-                            .foregroundStyle(.labelsPrimary)
+                    } else {
+                        Image(systemName: "bag.fill")
+                            .font(.system(size: 44))
+                            .foregroundStyle(Color(.systemGray3))
                     }
-                    
-                    Spacer()
-                    
-                    Button {
-                        inCart.toggle()
-                        cart.add(product)
-                        favorite.removeFavorite(id: product.id)
-                        
-                        
-                        
-                        
-                    } label: {
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.fillsTertiary)
-                            .frame(width: 38, height: 38)
-                            .overlay(
-                                Image(systemName: inCart ? "cart.fill" : "cart")
-                                    .foregroundColor(.labelsPrimary)
-                            )
-                            .padding(.trailing, 8)
-                    }
-                    
                 }
-                    .padding(8)
-            )
-        
+            
+            // Informações do produto
+            VStack(alignment: .leading, spacing: 8) {
+                Text(title)
+                    .font(.footnote)
+                    .foregroundStyle(.labelsPrimary)
+                
+                Text(price)
+                    .font(.headline)
+                    .foregroundStyle(.labelsPrimary)
+            }
+            
+            Spacer()
+            
+            // Botão de adicionar/remover do carrinho
+            Button {
+                inCart.toggle()
+                cart.add(productId: product.id)
+                favorite.removeFavorite(id: product.id)
+            } label: {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.fillsTertiary)
+                    .frame(width: 38, height: 38)
+                    .overlay(
+                        Image(systemName: inCart ? "cart.fill" : "cart")
+                            .foregroundColor(.labelsPrimary)
+                    )
+            }
+            .padding(.trailing, 8)
+            
+        }
+        .padding(8)
+        .frame(width: 361, height: 94)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color(.backgroundsSecondary))
+        )
     }
-    
 }
-
