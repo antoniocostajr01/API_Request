@@ -18,7 +18,7 @@ class SwiftDataService{
     
     @MainActor
     private init() {
-        self.modelContainer = try! ModelContainer(for: FavoriteProduct.self,CartPersistence.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
+        self.modelContainer = try! ModelContainer(for: FavoriteProduct.self, CartPersistence.self, Order.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
         self.modelContext = modelContainer.mainContext
 
 

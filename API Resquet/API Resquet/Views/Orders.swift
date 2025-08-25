@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct Orders: View {
-    @EnvironmentObject var orders: OrdersItem
+    @EnvironmentObject var orders: OrderViewModel
 
     @State private var query: String = ""
 

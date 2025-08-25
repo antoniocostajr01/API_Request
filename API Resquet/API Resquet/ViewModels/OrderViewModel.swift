@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-final class OrdersItem: ObservableObject {
+final class OrderViewModel: ObservableObject {
     @Published var items: [CartItem] = []
     @Published var createdAt: Date? = nil
     

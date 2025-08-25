@@ -9,7 +9,7 @@ import SwiftUI
 struct Cart: View {
     
     @StateObject private var cart = CartViewModel (dataSource: SwiftDataService.shared, service: DummyJSONService())
-    @EnvironmentObject var orders: OrdersItem
+    @EnvironmentObject var orders: OrderViewModel
     @State private var goToOrders = false
         
 
