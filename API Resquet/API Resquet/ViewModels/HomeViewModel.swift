@@ -21,11 +21,11 @@ final class HomeViewModel: ObservableObject {
     ]
 
     private let service: APIServicing
-    private let swiftDataFavoriteService: SwiftDataFavoriteService
+    private let swiftDataFavoriteService: SwiftDataService
 
     init(service: APIServicing) {
         self.service = service
-        self.swiftDataFavoriteService = SwiftDataFavoriteService.shared
+        self.swiftDataFavoriteService = SwiftDataService.shared
     }
 
     func load() async {

@@ -13,10 +13,10 @@ class FavoriteViewModel: ObservableObject {
     @Published var products: [Product] = []
     @Published var isLoading: Bool = false
         
-    private let dataSource: SwiftDataFavoriteService
+    private let dataSource: SwiftDataService
     private let service: APIServicing
     
-    init(dataSource: SwiftDataFavoriteService, service: APIServicing ) {
+    init(dataSource: SwiftDataService, service: APIServicing ) {
         self.dataSource = dataSource
         self.service = service
     }
@@ -31,7 +31,7 @@ class FavoriteViewModel: ObservableObject {
     }
     
     func fetchFavorites() async {
-        print("FavoriteService shared instance: \(SwiftDataFavoriteService.shared)")
+        print("FavoriteService shared instance: \(SwiftDataService.shared)")
         isLoading = true
         products.removeAll()
 

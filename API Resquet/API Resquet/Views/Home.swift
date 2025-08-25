@@ -72,7 +72,7 @@ struct Home: View {
         .sheet(item: $selectedProduct) { product in
             ProductDetail(product: product)
                 .environmentObject(cart)
-//                .presentationDragIndicator(.visible)
+                .presentationDragIndicator(.visible)
         }
     }
 
