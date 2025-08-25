@@ -9,10 +9,14 @@ import SwiftUI
 struct QuantityStepper: View {
     @Binding var value: Int
     var range: ClosedRange<Int> = 0...99
+    
+    var closure: () -> Void
+    
     var body: some View {
         HStack(spacing: 16) {
             Button {
                 if value > range.lowerBound { value -= 1 }
+                closure()
             } label: {
                 RoundedRectangle(cornerRadius: 8)
                     .fill(Color(.fillsTertiary))
@@ -28,6 +32,7 @@ struct QuantityStepper: View {
 
             Button {
                 if value < range.upperBound { value += 1 }
+                closure()
             } label: {
                 RoundedRectangle(cornerRadius: 8)
                     .fill(Color(.fillsTertiary))
@@ -42,6 +47,8 @@ struct QuantityStepper: View {
 struct ProductListCounter: View {
     @EnvironmentObject var cart: CartViewModel
     let product: Product
+    
+    var closure: () -> Void
 
     var body: some View {
         RoundedRectangle(cornerRadius: 16)
@@ -89,7 +96,7 @@ struct ProductListCounter: View {
 
                     Spacer(minLength: 0)
 
-                    QuantityStepper(value: cart.binding(for: product))
+                    QuantityStepper(value: cart.binding(for: product), closure: closure)
                 }
                 .padding(16)
             )

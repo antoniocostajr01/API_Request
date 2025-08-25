@@ -11,7 +11,7 @@ import SwiftData
 @main
 struct API_ResquetApp: App {
     
-    @StateObject private var order = OrderViewModel()
+    @StateObject private var order = OrderViewModel(dataSource: .shared, service: DummyJSONService())
     @StateObject private var cart = CartViewModel(dataSource: .shared, service: DummyJSONService())
 
 

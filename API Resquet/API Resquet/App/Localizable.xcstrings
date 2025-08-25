@@ -11,6 +11,9 @@
         }
       }
     },
+    "%@" : {
+
+    },
     "%@, price %@" : {
       "localizations" : {
         "en" : {
@@ -592,6 +595,7 @@
       }
     },
     "US$ %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {

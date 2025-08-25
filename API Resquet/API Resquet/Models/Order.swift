@@ -11,10 +11,12 @@ import SwiftData
 @Model
 class Order {
     var id: Int
-    var amount: Int
+    var amount: Double
+    var date: Date
     
-    init(id: Int, amount: Int) {
+    init(id: Int, amount: Double, date: Date) {
         self.id = id
         self.amount = amount
+        self.date = date
     }
 }

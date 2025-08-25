@@ -24,6 +24,25 @@ class SwiftDataService{
 
     }
     
+    func fetchOrder() -> [Order] {
+        do {
+            return try modelContext.fetch(FetchDescriptor<Order>())
+        } catch {
+            print(error.localizedDescription)
+            return []
+        }
+    }
+    
+    func addOrder(order: Order) {
+        modelContext.insert(order)
+        do {
+            try modelContext.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    
     func fetchCart() -> [CartPersistence] {
             do {
                 return try modelContext.fetch(FetchDescriptor<CartPersistence>())
