@@ -3,7 +3,7 @@ import SwiftUI
 struct Home: View {
     @StateObject private var vm = HomeViewModel(service: DummyJSONService())
     @State private var selectedProduct: Product? = nil
-    @EnvironmentObject var cart: CartStore
+    @EnvironmentObject var cart: CartViewModel
 
     // iPhone grid
     private let iPhoneColumns = [

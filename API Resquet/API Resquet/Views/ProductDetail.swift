@@ -9,7 +9,7 @@ import SwiftUI
 struct ProductDetail: View {
     let product: Product
     
-    @EnvironmentObject var cart: CartStore
+    @EnvironmentObject var cart: CartViewModel
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {

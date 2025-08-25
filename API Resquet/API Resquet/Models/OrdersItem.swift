@@ -11,8 +11,10 @@ import SwiftUI
 final class OrdersItem: ObservableObject {
     @Published var items: [CartItem] = []
     @Published var createdAt: Date? = nil
+    
+    //VER DEPOIS DO PQ DO MAIN ACTOR
 
-    func save(from cart: CartStore, limit: Int? = nil) {
+    @MainActor func save(from cart: CartViewModel, limit: Int? = nil) {
         let sorted = cart.items.values.sorted { $0.id < $1.id }
         let slice = limit.map { Array(sorted.prefix($0)) } ?? sorted
         self.items = slice

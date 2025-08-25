@@ -8,9 +8,10 @@ import SwiftUI
 
 struct Cart: View {
     
-    @EnvironmentObject var cart: CartStore
+    @StateObject private var cart = CartViewModel (dataSource: SwiftDataService.shared, service: DummyJSONService())
     @EnvironmentObject var orders: OrdersItem
     @State private var goToOrders = false
+        
 
     var body: some View {
         VStack(spacing: 12) {
@@ -28,7 +29,6 @@ struct Cart: View {
                         ForEach(limitedItems) { item in
                             ProductListCounter(product: item.product)
                                 .environmentObject(cart)
-                                .frame(maxWidth: .infinity)
                         }
                     }
                     .padding(.horizontal)
@@ -63,6 +63,9 @@ struct Cart: View {
                 .padding(.top, 12)
                 .padding(.bottom, 16)
             }
+        }
+        .task {
+            await cart.loadPersistence()
         }
         .navigationTitle("Cart")
     }

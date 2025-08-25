@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Favorites: View {
     
-    @EnvironmentObject var cart: CartStore
+    @EnvironmentObject var cart: CartViewModel
     
     @StateObject var favoriteProductViewModel: FavoriteViewModel = FavoriteViewModel(
         dataSource: .shared,
