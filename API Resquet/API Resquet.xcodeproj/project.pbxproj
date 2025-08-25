@@ -6,11 +6,50 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		B94CDA0C2E5CFBAB00047F69 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B986474A2E4D21DA0029B239 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B98647512E4D21DA0029B239;
+			remoteInfo = "API Resquet";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		B94CDA082E5CFBAB00047F69 /* API ResquetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "API ResquetTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B98647522E4D21DA0029B239 /* API Resquet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "API Resquet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		B94CDA112E5CFBBE00047F69 /* Exceptions for "API ResquetTests" folder in "API Resquet" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				FavoriteViewModelSwiftTest.swift,
+				OrderViewModelSwiftTests.swift,
+			);
+			target = B98647512E4D21DA0029B239 /* API Resquet */;
+		};
+		B94CDA122E5CFBBE00047F69 /* Exceptions for "API ResquetTests" folder in "API ResquetTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				FavoriteViewModelSwiftTest.swift,
+				OrderViewModelSwiftTests.swift,
+			);
+			target = B94CDA072E5CFBAB00047F69 /* API ResquetTests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		B94CDA092E5CFBAB00047F69 /* API ResquetTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				B94CDA112E5CFBBE00047F69 /* Exceptions for "API ResquetTests" folder in "API Resquet" target */,
+				B94CDA122E5CFBBE00047F69 /* Exceptions for "API ResquetTests" folder in "API ResquetTests" target */,
+			);
+			path = "API ResquetTests";
+			sourceTree = "<group>";
+		};
 		B98647542E4D21DA0029B239 /* API Resquet */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "API Resquet";
@@ -19,6 +58,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B94CDA052E5CFBAB00047F69 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B986474F2E4D21DA0029B239 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -33,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				B98647542E4D21DA0029B239 /* API Resquet */,
+				B94CDA092E5CFBAB00047F69 /* API ResquetTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -40,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				B98647522E4D21DA0029B239 /* API Resquet.app */,
+				B94CDA082E5CFBAB00047F69 /* API ResquetTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -47,6 +95,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B94CDA072E5CFBAB00047F69 /* API ResquetTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B94CDA0E2E5CFBAB00047F69 /* Build configuration list for PBXNativeTarget "API ResquetTests" */;
+			buildPhases = (
+				B94CDA042E5CFBAB00047F69 /* Sources */,
+				B94CDA052E5CFBAB00047F69 /* Frameworks */,
+				B94CDA062E5CFBAB00047F69 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B94CDA0D2E5CFBAB00047F69 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				B94CDA092E5CFBAB00047F69 /* API ResquetTests */,
+			);
+			name = "API ResquetTests";
+			packageProductDependencies = (
+			);
+			productName = "API ResquetTests";
+			productReference = B94CDA082E5CFBAB00047F69 /* API ResquetTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B98647512E4D21DA0029B239 /* API Resquet */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B986475D2E4D21DB0029B239 /* Build configuration list for PBXNativeTarget "API Resquet" */;
@@ -79,6 +150,10 @@
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
+					B94CDA072E5CFBAB00047F69 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = B98647512E4D21DA0029B239;
+					};
 					B98647512E4D21DA0029B239 = {
 						CreatedOnToolsVersion = 16.4;
 					};
@@ -100,11 +175,19 @@
 			projectRoot = "";
 			targets = (
 				B98647512E4D21DA0029B239 /* API Resquet */,
+				B94CDA072E5CFBAB00047F69 /* API ResquetTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B94CDA062E5CFBAB00047F69 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B98647502E4D21DA0029B239 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,6 +198,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B94CDA042E5CFBAB00047F69 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B986474E2E4D21DA0029B239 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,7 +214,51 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		B94CDA0D2E5CFBAB00047F69 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B98647512E4D21DA0029B239 /* API Resquet */;
+			targetProxy = B94CDA0C2E5CFBAB00047F69 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		B94CDA0F2E5CFBAB00047F69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PZ69U288R6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.antoniocosta.API-ResquetTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/API Resquet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/API Resquet";
+			};
+			name = Debug;
+		};
+		B94CDA102E5CFBAB00047F69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PZ69U288R6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.antoniocosta.API-ResquetTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/API Resquet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/API Resquet";
+			};
+			name = Release;
+		};
 		B986475B2E4D21DB0029B239 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -309,6 +443,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B94CDA0E2E5CFBAB00047F69 /* Build configuration list for PBXNativeTarget "API ResquetTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B94CDA0F2E5CFBAB00047F69 /* Debug */,
+				B94CDA102E5CFBAB00047F69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B986474D2E4D21DA0029B239 /* Build configuration list for PBXProject "API Resquet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
