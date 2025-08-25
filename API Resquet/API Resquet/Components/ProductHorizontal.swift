@@ -71,7 +71,7 @@ struct ProductHorizontal: View {
                             .font(.body)
                             .foregroundColor(.labelsPrimary)
                             .lineLimit(2)
-                        Text("US$ \(price)")
+                        Text("\(price)")
                             .font(.headline).bold()
                             .foregroundColor(.labelsPrimary)
                     }

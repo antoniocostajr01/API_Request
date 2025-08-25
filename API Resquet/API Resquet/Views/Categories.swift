@@ -18,8 +18,8 @@ struct Categories: View {
             HStack{
                 ForEach(viewModel.randomCategories) {category in
                     VStack{
-                        CategoryIcon()
-                        Text(category.name)
+                        CategoryIcon(icon: category.localizedCategory?.symbolName ?? LocalizedCategory.beauty.symbolName )
+                        Text(category.localizedCategory?.stringLocalized ?? LocalizedCategory.beauty.stringLocalized)
                             .lineLimit(1)
                             .font(.subheadline)
                             .fontWeight(.regular)
@@ -48,6 +48,3 @@ struct Categories: View {
     }
 }
 
-#Preview {
-    Categories()
-}

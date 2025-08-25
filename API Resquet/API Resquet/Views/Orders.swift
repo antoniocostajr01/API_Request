@@ -9,51 +9,36 @@
 import SwiftUI
 
 struct Orders: View {
-    @EnvironmentObject var orders: OrdersItem
+    @EnvironmentObject var orders: OrderViewModel
 
     @State private var query: String = ""
 
-    private var deliveryFormatter: DateFormatter {
-        let f = DateFormatter()
-        f.locale = .current
-        f.dateFormat = "MMMM, dd"
-        return f
-    }
-
-    private var eta: String {
-        let base = orders.createdAt ?? Date()
-        let date = base.addingTimeInterval(60 * 60 * 24 * 7) // +7 days
-        let text = String(localized: "DELIVERY BY: ")
-        return text+(deliveryFormatter.string(from: date)).uppercased()
-    }
-
-    private var filteredItems: [CartItem] {
-        guard !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
-            return orders.items
-        }
-        return orders.items.filter { item in
-            item.product.title.range(
-                of: query,
-                options: [.caseInsensitive, .diacriticInsensitive]
-            ) != nil
-        }
-    }
+//    private var filteredItems: [CartPersistence] {
+//        guard !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+//            return orders.items
+//        }
+//        return orders.items.filter { item in
+//            item.product.title.range(
+//                of: query,
+//                options: [.caseInsensitive, .diacriticInsensitive]
+//            ) != nil
+//        }
+//    }
 
     var body: some View {
         VStack(spacing: 12) {
-            if filteredItems.isEmpty {
+            if orders.items.isEmpty {
              EmptyStateOrders()
             } else {
                 ScrollView {
                     LazyVStack(spacing: 12) {
-                        ForEach(filteredItems) { item in
+                        ForEach(orders.items) { item in
                             ProductListDelivery(
-                                product: item.product,
-                                deliverText: eta,
+                                product: orders.getElementById(id: item.id),
+                                deliverText: orders.eta(orderDate: item.date),
                                 priceText:
                                     String(
-                                        format: "\(String(localized: "Currency", defaultValue: "US$")) %.2f",
-                                    item.product.price * Double(item.quantity)
+                                        format: "\(String(localized: "Currency", defaultValue: "US$")) %.2f", item.amount
                                 )
                         )
                             .frame(maxWidth: .infinity)
@@ -72,6 +57,9 @@ struct Orders: View {
         )
         .autocorrectionDisabled(true)
         .textInputAutocapitalization(.never)
+        .task {
+            await orders.loadPersistence()
+        }
     }
 }
 

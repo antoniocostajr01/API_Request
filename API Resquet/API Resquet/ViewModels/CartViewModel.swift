@@ -12,21 +12,46 @@ import SwiftUI
 class CartViewModel: ObservableObject {
     @Published private(set) var items: [Int: CartItem] = [:]
     @Published var persistenceItems: [CartPersistence] = []
-    @Published var products: [Product] = []
+//    @Published var products: [Product] = []
     @Published var isLoading: Bool = false
     
     private let dataSource: SwiftDataService
     private let service: APIServicing
+    var limitedItems: [CartPersistence] = []
+    var limitedSubtotal: Double = 0
+    var productsFiltered: [CartItem] = []
+    
     
     init(dataSource: SwiftDataService, service: APIServicing ) {
         self.dataSource = dataSource
         self.service = service
     }
     
+    
+    func setList() {
+        limitedSubtotal = 0 
+        let sortedItems = persistenceItems.sorted { $0.id < $1.id }
+        limitedItems = Array(sortedItems.prefix(9))
+        
+        let ids = Set(limitedItems.map{$0.id})
+        productsFiltered = items.values.filter{ids.contains($0.id)}
+        
+        for productsFilter in productsFiltered {
+            for item in limitedItems {
+                if productsFilter.id == item.id {
+                    limitedSubtotal += Double(productsFilter.product.price) * Double(item.quantity)
+                    break
+                }
+            }
+        }
+    }
+    
     func loadPersistence() async {
         print("CartService shared instance: \(SwiftDataService.shared)")
         isLoading = true
         let persistedItems = dataSource.fetchCart()
+        
+        persistenceItems = persistedItems
         
         var loadedItems: [Int: CartItem] = [:]
         
@@ -38,6 +63,8 @@ class CartViewModel: ObservableObject {
         
         self.items = loadedItems
         isLoading = false
+        
+        setList()
     }
     
     

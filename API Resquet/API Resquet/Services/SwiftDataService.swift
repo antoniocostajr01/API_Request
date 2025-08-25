@@ -18,11 +18,30 @@ class SwiftDataService{
     
     @MainActor
     private init() {
-        self.modelContainer = try! ModelContainer(for: FavoriteProduct.self,CartPersistence.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
+        self.modelContainer = try! ModelContainer(for: FavoriteProduct.self, CartPersistence.self, Order.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
         self.modelContext = modelContainer.mainContext
 
 
     }
+    
+    func fetchOrder() -> [Order] {
+        do {
+            return try modelContext.fetch(FetchDescriptor<Order>())
+        } catch {
+            print(error.localizedDescription)
+            return []
+        }
+    }
+    
+    func addOrder(order: Order) {
+        modelContext.insert(order)
+        do {
+            try modelContext.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     
     func fetchCart() -> [CartPersistence] {
             do {

@@ -9,8 +9,7 @@ import SwiftUI
 struct Cart: View {
     
     @StateObject private var cart = CartViewModel (dataSource: SwiftDataService.shared, service: DummyJSONService())
-    @EnvironmentObject var orders: OrdersItem
-    @State private var goToOrders = false
+    @EnvironmentObject var orders: OrderViewModel
         
 
     var body: some View {
@@ -18,16 +17,12 @@ struct Cart: View {
             if cart.items.isEmpty {
                 EmptyStateCart()
             } else {
-                let sortedItems = cart.items.values.sorted { $0.id < $1.id }
-                let limitedItems = Array(sortedItems.prefix(9))
-                let limitedSubtotal = limitedItems.reduce(0.0) { acc, item in
-                    acc + (item.product.price * Double(item.quantity))
-                }
-
                 ScrollView {
                     LazyVStack(spacing: 12) {
-                        ForEach(limitedItems) { item in
-                            ProductListCounter(product: item.product)
+                        ForEach(cart.productsFiltered) { item in
+                            ProductListCounter(product: item.product, closure: {
+                                cart.setList()
+                            })
                                 .environmentObject(cart)
                         }
                     }
@@ -41,14 +36,12 @@ struct Cart: View {
                             .foregroundStyle(.labelsPrimary)
                             .font(.subheadline)
                         Spacer()
-                        Text(String(localized: "Currency", defaultValue: "US$") + " " + String(format: "%.2f", limitedSubtotal))
-//                        Text("R$ \(limitedSubtotal, specifier: "%.2f")")
+                        Text(String(localized: "Currency", defaultValue: "US$") + " " + String(format: "%.2f", cart.limitedSubtotal))
                             .font(.headline)
                     }
 
                     Button {
-                        orders.save(items: limitedItems)
-                        goToOrders = true
+                        orders.save(items: cart.limitedItems)
                         cart.clear()
                     } label: {
                         RoundedRectangle(cornerRadius: 16)
