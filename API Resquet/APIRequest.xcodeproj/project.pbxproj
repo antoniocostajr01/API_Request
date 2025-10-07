@@ -7,65 +7,42 @@
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
-		B94CDA0C2E5CFBAB00047F69 /* PBXContainerItemProxy */ = {
+		BF9F49B22E5E1DBA008267FE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B986474A2E4D21DA0029B239 /* Project object */;
+			containerPortal = BF9F493B2E5E1D50008267FE /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B98647512E4D21DA0029B239;
-			remoteInfo = "API Resquet";
+			remoteGlobalIDString = BF9F49422E5E1D50008267FE;
+			remoteInfo = APIRequest;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B94CDA082E5CFBAB00047F69 /* API ResquetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "API ResquetTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B98647522E4D21DA0029B239 /* API Resquet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "API Resquet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF9F49432E5E1D50008267FE /* APIRequest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APIRequest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF9F49AE2E5E1DBA008267FE /* APIRequestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APIRequestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		B94CDA112E5CFBBE00047F69 /* Exceptions for "API ResquetTests" folder in "API Resquet" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				FavoriteViewModelSwiftTest.swift,
-				OrderViewModelSwiftTests.swift,
-			);
-			target = B98647512E4D21DA0029B239 /* API Resquet */;
-		};
-		B94CDA122E5CFBBE00047F69 /* Exceptions for "API ResquetTests" folder in "API ResquetTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				FavoriteViewModelSwiftTest.swift,
-				OrderViewModelSwiftTests.swift,
-			);
-			target = B94CDA072E5CFBAB00047F69 /* API ResquetTests */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		B94CDA092E5CFBAB00047F69 /* API ResquetTests */ = {
+		BF9F49452E5E1D50008267FE /* APIRequest */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				B94CDA112E5CFBBE00047F69 /* Exceptions for "API ResquetTests" folder in "API Resquet" target */,
-				B94CDA122E5CFBBE00047F69 /* Exceptions for "API ResquetTests" folder in "API ResquetTests" target */,
-			);
-			path = "API ResquetTests";
+			path = APIRequest;
 			sourceTree = "<group>";
 		};
-		B98647542E4D21DA0029B239 /* API Resquet */ = {
+		BF9F49AF2E5E1DBA008267FE /* APIRequestTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "API Resquet";
+			path = APIRequestTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B94CDA052E5CFBAB00047F69 /* Frameworks */ = {
+		BF9F49402E5E1D50008267FE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B986474F2E4D21DA0029B239 /* Frameworks */ = {
+		BF9F49AB2E5E1DBA008267FE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -75,19 +52,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B98647492E4D21DA0029B239 = {
+		BF9F493A2E5E1D50008267FE = {
 			isa = PBXGroup;
 			children = (
-				B98647542E4D21DA0029B239 /* API Resquet */,
-				B94CDA092E5CFBAB00047F69 /* API ResquetTests */,
+				BF9F49452E5E1D50008267FE /* APIRequest */,
+				BF9F49AF2E5E1DBA008267FE /* APIRequestTests */,
+				BF9F49442E5E1D50008267FE /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		B98647532E4D21DA0029B239 /* Products */ = {
+		BF9F49442E5E1D50008267FE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B98647522E4D21DA0029B239 /* API Resquet.app */,
-				B94CDA082E5CFBAB00047F69 /* API ResquetTests.xctest */,
+				BF9F49432E5E1D50008267FE /* APIRequest.app */,
+				BF9F49AE2E5E1DBA008267FE /* APIRequestTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,100 +73,99 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B94CDA072E5CFBAB00047F69 /* API ResquetTests */ = {
+		BF9F49422E5E1D50008267FE /* APIRequest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B94CDA0E2E5CFBAB00047F69 /* Build configuration list for PBXNativeTarget "API ResquetTests" */;
+			buildConfigurationList = BF9F494E2E5E1D51008267FE /* Build configuration list for PBXNativeTarget "APIRequest" */;
 			buildPhases = (
-				B94CDA042E5CFBAB00047F69 /* Sources */,
-				B94CDA052E5CFBAB00047F69 /* Frameworks */,
-				B94CDA062E5CFBAB00047F69 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B94CDA0D2E5CFBAB00047F69 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				B94CDA092E5CFBAB00047F69 /* API ResquetTests */,
-			);
-			name = "API ResquetTests";
-			packageProductDependencies = (
-			);
-			productName = "API ResquetTests";
-			productReference = B94CDA082E5CFBAB00047F69 /* API ResquetTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		B98647512E4D21DA0029B239 /* API Resquet */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B986475D2E4D21DB0029B239 /* Build configuration list for PBXNativeTarget "API Resquet" */;
-			buildPhases = (
-				B986474E2E4D21DA0029B239 /* Sources */,
-				B986474F2E4D21DA0029B239 /* Frameworks */,
-				B98647502E4D21DA0029B239 /* Resources */,
+				BF9F493F2E5E1D50008267FE /* Sources */,
+				BF9F49402E5E1D50008267FE /* Frameworks */,
+				BF9F49412E5E1D50008267FE /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				B98647542E4D21DA0029B239 /* API Resquet */,
+				BF9F49452E5E1D50008267FE /* APIRequest */,
 			);
-			name = "API Resquet";
+			name = APIRequest;
 			packageProductDependencies = (
 			);
-			productName = "API Resquet";
-			productReference = B98647522E4D21DA0029B239 /* API Resquet.app */;
+			productName = APIRequest;
+			productReference = BF9F49432E5E1D50008267FE /* APIRequest.app */;
 			productType = "com.apple.product-type.application";
+		};
+		BF9F49AD2E5E1DBA008267FE /* APIRequestTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF9F49B42E5E1DBA008267FE /* Build configuration list for PBXNativeTarget "APIRequestTests" */;
+			buildPhases = (
+				BF9F49AA2E5E1DBA008267FE /* Sources */,
+				BF9F49AB2E5E1DBA008267FE /* Frameworks */,
+				BF9F49AC2E5E1DBA008267FE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BF9F49B32E5E1DBA008267FE /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BF9F49AF2E5E1DBA008267FE /* APIRequestTests */,
+			);
+			name = APIRequestTests;
+			packageProductDependencies = (
+			);
+			productName = APIRequestTests;
+			productReference = BF9F49AE2E5E1DBA008267FE /* APIRequestTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		B986474A2E4D21DA0029B239 /* Project object */ = {
+		BF9F493B2E5E1D50008267FE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
-					B94CDA072E5CFBAB00047F69 = {
+					BF9F49422E5E1D50008267FE = {
 						CreatedOnToolsVersion = 16.4;
-						TestTargetID = B98647512E4D21DA0029B239;
 					};
-					B98647512E4D21DA0029B239 = {
+					BF9F49AD2E5E1DBA008267FE = {
 						CreatedOnToolsVersion = 16.4;
+						TestTargetID = BF9F49422E5E1D50008267FE;
 					};
 				};
 			};
-			buildConfigurationList = B986474D2E4D21DA0029B239 /* Build configuration list for PBXProject "API Resquet" */;
+			buildConfigurationList = BF9F493E2E5E1D50008267FE /* Build configuration list for PBXProject "APIRequest" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
-				"pt-BR",
 			);
-			mainGroup = B98647492E4D21DA0029B239;
+			mainGroup = BF9F493A2E5E1D50008267FE;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = B98647532E4D21DA0029B239 /* Products */;
+			productRefGroup = BF9F49442E5E1D50008267FE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B98647512E4D21DA0029B239 /* API Resquet */,
-				B94CDA072E5CFBAB00047F69 /* API ResquetTests */,
+				BF9F49422E5E1D50008267FE /* APIRequest */,
+				BF9F49AD2E5E1DBA008267FE /* APIRequestTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		B94CDA062E5CFBAB00047F69 /* Resources */ = {
+		BF9F49412E5E1D50008267FE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B98647502E4D21DA0029B239 /* Resources */ = {
+		BF9F49AC2E5E1DBA008267FE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -198,14 +175,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B94CDA042E5CFBAB00047F69 /* Sources */ = {
+		BF9F493F2E5E1D50008267FE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B986474E2E4D21DA0029B239 /* Sources */ = {
+		BF9F49AA2E5E1DBA008267FE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -215,51 +192,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B94CDA0D2E5CFBAB00047F69 /* PBXTargetDependency */ = {
+		BF9F49B32E5E1DBA008267FE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B98647512E4D21DA0029B239 /* API Resquet */;
-			targetProxy = B94CDA0C2E5CFBAB00047F69 /* PBXContainerItemProxy */;
+			target = BF9F49422E5E1D50008267FE /* APIRequest */;
+			targetProxy = BF9F49B22E5E1DBA008267FE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		B94CDA0F2E5CFBAB00047F69 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PZ69U288R6;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.antoniocosta.API-ResquetTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/API Resquet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/API Resquet";
-			};
-			name = Debug;
-		};
-		B94CDA102E5CFBAB00047F69 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PZ69U288R6;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.antoniocosta.API-ResquetTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/API Resquet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/API Resquet";
-			};
-			name = Release;
-		};
-		B986475B2E4D21DB0029B239 /* Debug */ = {
+		BF9F494C2E5E1D51008267FE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -294,7 +235,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = PZ69U288R6;
+				DEVELOPMENT_TEAM = PDK3SF5NU7;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -319,12 +260,11 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		B986475C2E4D21DB0029B239 /* Release */ = {
+		BF9F494D2E5E1D51008267FE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -359,7 +299,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = PZ69U288R6;
+				DEVELOPMENT_TEAM = PDK3SF5NU7;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -377,19 +317,18 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		B986475E2E4D21DB0029B239 /* Debug */ = {
+		BF9F494F2E5E1D51008267FE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PZ69U288R6;
+				DEVELOPMENT_TEAM = PDK3SF5NU7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -397,13 +336,12 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.antoniocosta.API-Resquet";
+				PRODUCT_BUNDLE_IDENTIFIER = br.academy.sofia.APIRequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -411,14 +349,14 @@
 			};
 			name = Debug;
 		};
-		B986475F2E4D21DB0029B239 /* Release */ = {
+		BF9F49502E5E1D51008267FE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PZ69U288R6;
+				DEVELOPMENT_TEAM = PDK3SF5NU7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -426,13 +364,12 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.antoniocosta.API-Resquet";
+				PRODUCT_BUNDLE_IDENTIFIER = br.academy.sofia.APIRequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -440,37 +377,73 @@
 			};
 			name = Release;
 		};
+		BF9F49B52E5E1DBA008267FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PDK3SF5NU7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = br.academy.sofia.APIRequestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/APIRequest.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/APIRequest";
+			};
+			name = Debug;
+		};
+		BF9F49B62E5E1DBA008267FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PDK3SF5NU7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = br.academy.sofia.APIRequestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/APIRequest.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/APIRequest";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B94CDA0E2E5CFBAB00047F69 /* Build configuration list for PBXNativeTarget "API ResquetTests" */ = {
+		BF9F493E2E5E1D50008267FE /* Build configuration list for PBXProject "APIRequest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B94CDA0F2E5CFBAB00047F69 /* Debug */,
-				B94CDA102E5CFBAB00047F69 /* Release */,
+				BF9F494C2E5E1D51008267FE /* Debug */,
+				BF9F494D2E5E1D51008267FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B986474D2E4D21DA0029B239 /* Build configuration list for PBXProject "API Resquet" */ = {
+		BF9F494E2E5E1D51008267FE /* Build configuration list for PBXNativeTarget "APIRequest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B986475B2E4D21DB0029B239 /* Debug */,
-				B986475C2E4D21DB0029B239 /* Release */,
+				BF9F494F2E5E1D51008267FE /* Debug */,
+				BF9F49502E5E1D51008267FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B986475D2E4D21DB0029B239 /* Build configuration list for PBXNativeTarget "API Resquet" */ = {
+		BF9F49B42E5E1DBA008267FE /* Build configuration list for PBXNativeTarget "APIRequestTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B986475E2E4D21DB0029B239 /* Debug */,
-				B986475F2E4D21DB0029B239 /* Release */,
+				BF9F49B52E5E1DBA008267FE /* Debug */,
+				BF9F49B62E5E1DBA008267FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = B986474A2E4D21DA0029B239 /* Project object */;
+	rootObject = BF9F493B2E5E1D50008267FE /* Project object */;
 }
