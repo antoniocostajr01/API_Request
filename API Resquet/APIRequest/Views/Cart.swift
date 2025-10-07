@@ -60,7 +60,7 @@ struct Cart: View {
         .task {
             await cart.loadPersistence()
         }
-        .navigationTitle("Cart")
+        .navigationTitle(String(localized: "Cart", defaultValue: "Cart"))
     }
 }
 

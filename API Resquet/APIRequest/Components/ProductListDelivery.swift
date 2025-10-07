@@ -17,7 +17,7 @@ struct ProductListDelivery: View {
             .overlay(
                 HStack(spacing: 16) {
 
-                    // Image container
+                    
                     ZStack {
                         RoundedRectangle(cornerRadius: 8)
                             .fill(Color(.fillsTertiary))
@@ -30,50 +30,43 @@ struct ProductListDelivery: View {
                                     img
                                         .resizable()
                                         .scaledToFill()
+                                        .accessibilityLabel("Imagem de \(product.title)")
                                 case .empty:
-                                    // placeholder while loading
                                     Image(systemName: "bag.fill")
                                         .font(.system(size: 28))
                                         .foregroundStyle(.labelsPrimary)
+                                        .accessibilityLabel("Imagem indisponível")
                                 case .failure(_):
-                                    // fallback on failure
                                     Image(systemName: "bag.fill")
                                         .font(.system(size: 28))
                                         .foregroundStyle(.labelsPrimary)
+                                        .accessibilityLabel("Imagem indisponível")
                                 @unknown default:
                                     EmptyView()
                                 }
                             }
                             .clipShape(RoundedRectangle(cornerRadius: 8))
-                            .allowsHitTesting(false) // don’t block taps
+                            .allowsHitTesting(false)
                         } else {
                             Image(systemName: "bag.fill")
                                 .font(.system(size: 28))
                                 .foregroundStyle(.labelsPrimary)
+                                .accessibilityLabel("Imagem indisponível")
                         }
                     }
                     .frame(width: 74, height: 74)
                     .clipped()
 
-                    // Right-side texts (optional)
-                    VStack(alignment: .leading, spacing: 6) {
-                        if let deliverText {
-                            Text(deliverText.uppercased())
-                                .font(.caption)
-                                .foregroundStyle(.labelsSecondary)
-                        }
-
-                        Text(product.title)
-                            .font(.footnote)
-                            .foregroundStyle(.labelsPrimary)
-                            .lineLimit(2)
-
-                        if let priceText {
-                            Text(priceText)
-                                .font(.headline)
-                                .foregroundStyle(.labelsPrimary)
-                        }
-                    }
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel(
+                        [
+                            deliverText?.uppercased(),
+                            product.title
+                        ]
+                            .compactMap { $0 }
+                            .joined(separator: ", ")
+                    )
+                    .accessibilityValue(priceText ?? "")
 
                     Spacer(minLength: 0)
                 }

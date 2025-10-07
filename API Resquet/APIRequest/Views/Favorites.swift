@@ -49,7 +49,7 @@ struct Favorites: View {
                 await favoriteProductViewModel.fetchFavorites()
         }
         .padding()
-        .navigationTitle("Favorites")
+        .navigationTitle(String(localized: "Favorites", defaultValue: "Favorites"))
         .environmentObject(favoriteProductViewModel)
         .environmentObject(cart)
     }

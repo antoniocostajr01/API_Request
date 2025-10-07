@@ -40,7 +40,7 @@ struct Categories: View {
             .listSectionSeparator(.hidden)
         }
         .searchable(text: $viewModel.searchText, prompt: "Search")
-        .navigationTitle("Categories")
+        .navigationTitle(String(localized: "Categories", defaultValue: "Categories"))
         .task {
             await viewModel.load()
         }

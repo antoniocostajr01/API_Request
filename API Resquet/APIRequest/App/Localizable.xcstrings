@@ -12,7 +12,14 @@
       }
     },
     "%@" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
     },
     "%@, price %@" : {
       "localizations" : {
@@ -92,6 +99,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Adicione aos favoritos"
+          }
+        }
+      }
+    },
+    "Adicionar ao carrinho" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicionar ao carrinho"
+          }
+        }
+      }
+    },
+    "Aumentar quantidade" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aumentar quantidade"
           }
         }
       }
@@ -223,6 +250,16 @@
         }
       }
     },
+    "Diminuir quantidade" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diminuir quantidade"
+          }
+        }
+      }
+    },
     "Double tap to add to favorites" : {
       "localizations" : {
         "pt-BR" : {
@@ -333,6 +370,26 @@
         }
       }
     },
+    "Imagem de %@" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imagem de %@"
+          }
+        }
+      }
+    },
+    "Imagem indisponível" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imagem indisponível"
+          }
+        }
+      }
+    },
     "Key" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -424,6 +481,16 @@
         }
       }
     },
+    "No carrinho" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No carrinho"
+          }
+        }
+      }
+    },
     "No favorites yet!" : {
       "localizations" : {
         "pt-BR" : {
@@ -480,6 +547,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Imagem do produto: "
+          }
+        }
+      }
+    },
+    "Quantidade atual" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quantidade atual"
+          }
+        }
+      }
+    },
+    "Quantidade de %@" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quantidade de %@"
           }
         }
       }
@@ -595,7 +682,7 @@
       }
     },
     "US$ %@" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {

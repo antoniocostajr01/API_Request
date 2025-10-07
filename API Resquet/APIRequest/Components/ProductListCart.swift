@@ -11,24 +11,22 @@ struct ProductListCart: View {
     let price: String
     let imageURL: String?
     let product: Product
-    
+
     @State var inCart: Bool
-    
     @EnvironmentObject var cart: CartViewModel
-    
     @StateObject var favorite: FavoriteViewModel = FavoriteViewModel(
-        
         dataSource: .shared,
         service: DummyJSONService()
-        
     )
-    
+
     var body: some View {
         RoundedRectangle(cornerRadius: 16)
             .fill(Color(.backgroundsSecondary))
             .frame(width: 361, height: 94)
             .overlay(
                 HStack(spacing: 16) {
+
+                  
                     RoundedRectangle(cornerRadius: 8)
                         .fill(Color(.fillsTertiary))
                         .frame(width: 74, height: 74)
@@ -36,12 +34,17 @@ struct ProductListCart: View {
                             if let imageURL, let url = URL(string: imageURL) {
                                 AsyncImage(url: url) { phase in
                                     switch phase {
-                                    case .success(let img): img.resizable().scaledToFill().frame(width: 74, height: 74)
-
+                                    case .success(let img):
+                                        img.resizable()
+                                            .scaledToFill()
+                                            .frame(width: 74, height: 74)
+                                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                                            .accessibilityLabel("Imagem de \(title)")
                                     default:
                                         Image(systemName: "bag.fill")
                                             .font(.system(size: 44))
                                             .foregroundStyle(Color(.systemGray3))
+                                            .accessibilityLabel("Imagem indisponível")
                                     }
                                 }
                                 .frame(width: 160, height: 160)
@@ -51,29 +54,28 @@ struct ProductListCart: View {
                                 Image(systemName: "bag.fill")
                                     .font(.system(size: 44))
                                     .foregroundStyle(Color(.systemGray3))
+                                    .accessibilityLabel("Imagem indisponível")
                             }
-                            
                         }
+
+           
                     VStack(alignment: .leading, spacing: 8) {
                         Text(title)
                             .font(.footnote)
                             .foregroundStyle(.labelsPrimary)
-                        
                         Text(price)
                             .font(.headline)
                             .foregroundStyle(.labelsPrimary)
                     }
-                    
+                    .accessibilityElement(children: .combine)
+
                     Spacer()
-                    
+
+            
                     Button {
                         inCart.toggle()
                         cart.add(product)
                         favorite.removeFavorite(id: product.id)
-                        
-                        
-                        
-                        
                     } label: {
                         RoundedRectangle(cornerRadius: 8)
                             .fill(Color.fillsTertiary)
@@ -84,12 +86,10 @@ struct ProductListCart: View {
                             )
                             .padding(.trailing, 8)
                     }
-                    
+                    .accessibilityLabel(inCart ? "No carrinho" : "Adicionar ao carrinho")
                 }
-                    .padding(8)
+                .padding(8)
             )
-        
     }
-    
 }
 
