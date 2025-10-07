@@ -59,7 +59,7 @@ struct ProductDetail: View {
                 }
                 .padding()
             }
-            .navigationTitle("Details")
+            .navigationTitle(String(localized: "Details", defaultValue: "Details"))
         }
     }
 }

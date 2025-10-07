@@ -35,7 +35,7 @@ struct Orders: View {
                 }
             }
         }
-        .navigationTitle("Orders")
+        .navigationTitle(String(localized: "Orders", defaultValue: "Orders"))
         .searchable(
             text: $orders.query,
             placement: .navigationBarDrawer(displayMode: .always),
