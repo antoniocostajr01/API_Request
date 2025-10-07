@@ -19,7 +19,7 @@ final class HomeViewModel: ObservableObject {
         GridItem(.flexible(), spacing: 12),
         GridItem(.flexible(), spacing: 12)
     ]
-
+    
     private let service: APIServicing
     private let swiftDataFavoriteService: SwiftDataService
 

@@ -24,6 +24,7 @@ class OrderViewModel: ObservableObject {
         return f
     }
     
+    var query: String = ""
     
     init(dataSource: SwiftDataService, service: APIServicing ) {
         self.dataSource = dataSource

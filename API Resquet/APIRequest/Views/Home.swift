@@ -2,7 +2,6 @@ import SwiftUI
 
 struct Home: View {
     @StateObject private var vm = HomeViewModel(service: DummyJSONService())
-    @State private var selectedProduct: Product? = nil
     @EnvironmentObject var cart: CartViewModel
 
     // iPhone grid
@@ -69,7 +68,7 @@ struct Home: View {
         }
         .task { await vm.load() }
         .environmentObject(cart)
-        .sheet(item: $selectedProduct) { product in
+        .sheet(item: $vm.selectedProduct) { product in
             ProductDetail(product: product)
                 .environmentObject(cart)
                 .presentationDragIndicator(.visible)
@@ -94,7 +93,7 @@ struct Home: View {
                             imageURL: first.thumbnail,
                             isFavorite: isFav(first.id),
                             onFavoriteTap: { vm.toggleIsFavorite(id: first.id) },
-                            onTap: { selectedProduct = first },
+                            onTap: { vm.selectedProduct = first },
                             frame: CGRect(x: 0, y: 0, width: 557, height: 271)
                         )
                         .id("deal-\(idx)")
@@ -121,7 +120,7 @@ struct Home: View {
                             imageURL: first.thumbnail,
                             isFavorite: isFav(first.id),
                             onFavoriteTap: { vm.toggleIsFavorite(id: first.id) },
-                            onTap: { selectedProduct = first },
+                            onTap: { vm.selectedProduct = first },
                             frame: CGRect(x: 0, y: 0, width: 377, height: 183)
                         )
                         .id("deal-\(idx)")
@@ -141,7 +140,7 @@ struct Home: View {
                         imageURL: p.thumbnail,
                         isFavorite: isFav(p.id),
                         onTap: {
-                            selectedProduct = p
+                            vm.selectedProduct = p
                         },
                         onFavoriteTap: {
                             vm.toggleIsFavorite(id: p.id)
@@ -163,7 +162,7 @@ struct Home: View {
                         imageURL: p.thumbnail,
                         isFavorite: isFav(p.id),
                         onTap: {
-                            selectedProduct = p
+                            vm.selectedProduct = p
                         },
                         onFavoriteTap: {
                             vm.toggleIsFavorite(id: p.id)
@@ -193,7 +192,7 @@ struct Home: View {
                             imageURL: first.thumbnail,
                             isFavorite: isFav(first.id),
                             onFavoriteTap: { vm.toggleIsFavorite(id: first.id) },
-                            onTap: { selectedProduct = first },
+                            onTap: { vm.selectedProduct = first },
                             frame: CGRect(x: 0, y: 0, width: 361, height: 176)
                         )
                     }
@@ -215,7 +214,7 @@ struct Home: View {
                             price: priceText(p.price),
                             imageURL: p.thumbnail,
                             isFavorite: isFav(p.id),
-                            onTap: { selectedProduct = p },
+                            onTap: { vm.selectedProduct = p },
                             onFavoriteTap: { vm.toggleIsFavorite(id: p.id) },
                             frame: CGRect(x: 0, y: 0, width: 177, height: 250)
                         )

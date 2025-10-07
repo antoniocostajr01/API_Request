@@ -11,20 +11,6 @@ import SwiftUI
 struct Orders: View {
     @EnvironmentObject var orders: OrderViewModel
 
-    @State private var query: String = ""
-
-//    private var filteredItems: [CartPersistence] {
-//        guard !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
-//            return orders.items
-//        }
-//        return orders.items.filter { item in
-//            item.product.title.range(
-//                of: query,
-//                options: [.caseInsensitive, .diacriticInsensitive]
-//            ) != nil
-//        }
-//    }
-
     var body: some View {
         VStack(spacing: 12) {
             if orders.items.isEmpty {
@@ -51,7 +37,7 @@ struct Orders: View {
         }
         .navigationTitle("Orders")
         .searchable(
-            text: $query,
+            text: $orders.query,
             placement: .navigationBarDrawer(displayMode: .always),
             prompt: "Search products"
         )

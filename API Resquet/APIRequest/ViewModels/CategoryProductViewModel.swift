@@ -25,6 +25,9 @@ final class CategoryProductViewModel: ObservableObject {
     private let swiftDataFavoriteService: SwiftDataService
 
     
+    var selectedProduct: Product? = nil
+    
+    
     init(service: APIServicing) {
         self.service = service
         self.swiftDataFavoriteService = SwiftDataService.shared

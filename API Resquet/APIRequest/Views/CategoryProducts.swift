@@ -11,10 +11,7 @@ struct CategoryProducts: View {
     
     @StateObject var viewModel = CategoryProductViewModel(service: DummyJSONService())
     
-    
-    @State private var selectedProduct: Product? = nil
-    
-    
+
     private let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 12),
         GridItem(.flexible(), spacing: 12)
@@ -36,7 +33,7 @@ struct CategoryProducts: View {
                         price: "US$" + String(format: "%.2f", product.price),
                         imageURL: product.thumbnail,
                         isFavorite: viewModel.getFavorites().map { $0.id }.contains(product.id),
-                        onTap: { selectedProduct = product },
+                        onTap: { viewModel.selectedProduct = product },
                         onFavoriteTap: {
                             viewModel.toggleIsFavorite(id: product.id)
                         }, frame: CGRect(x: 0, y: 0, width: 177, height: 250)
@@ -52,7 +49,7 @@ struct CategoryProducts: View {
         .task {
             await viewModel.loadProducts(category: categorySelected)
         }
-        .sheet(item: $selectedProduct) { product in
+        .sheet(item: $viewModel.selectedProduct) { product in
             ProductDetail(product: product)
                 .presentationDragIndicator(.visible)
             
